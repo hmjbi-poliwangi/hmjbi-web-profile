@@ -14,11 +14,11 @@ export default function Navbar() {
                 <Link href="/" className="w-10 bg-white p-1 rounded-sm">
                     <Image src={Logo} alt="Picture of the author" />
                 </Link>
-                <ul className="flex gap-6">
+                <ul className="flex gap-4">
                     <li>
                         <Link
                             href="/"
-                            className="border font-medium border-primary pl-2.5 pr-2.5 pb-2 pt-2 rounded-[8px] hover:bg-primary hover:text-black"
+                            className="border font-medium border-primary px-[10px] py-[8px] rounded-[8px] transition-all duration-300 ease-in-out hover:bg-primary hover:p-2.5 hover:text-black hover:shadow-[0_0_10px_var(--color-primary)]"
                         >
                             Beranda
                         </Link>
@@ -26,7 +26,7 @@ export default function Navbar() {
                     <li>
                         <Link
                             href="/about"
-                            className="border font-medium border-primary pl-2.5 pr-2.5 pb-2 pt-2 rounded-[8px]  hover:bg-primary hover:text-black"
+                            className="border font-medium border-primary px-[10px] py-[8px] rounded-[8px] transition-all duration-300 ease-in-out hover:bg-primary hover:p-2.5 hover:text-black hover:shadow-[0_0_10px_var(--color-primary)]"
                         >
                             Divisi
                         </Link>
@@ -34,7 +34,7 @@ export default function Navbar() {
                     <li>
                         <Link
                             href="/activities"
-                            className="border font-medium border-primary pl-2.5 pr-2.5 pb-2 pt-2 rounded-[8px]  hover:bg-primary hover:text-black transition-all duration-300 ease-in-out hover:pt-[9px]"
+                            className="border font-medium border-primary px-[10px] py-[8px] rounded-[8px] transition-all duration-300 ease-in-out hover:bg-primary hover:p-2.5 hover:text-black hover:shadow-[0_0_10px_var(--color-primary)]"
                         >
                             Kegiatan
                         </Link>
