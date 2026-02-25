@@ -52,9 +52,12 @@ export default function Navbar() {
                 onClose={() => setModalOpen(false)}
                 title={
                     <div className="header-wrap flex flex-col items-center">
-                        <div className="bg-black pl-12 pr-12 pt-1.5 pb-1.5 rounded-[60px]">
-                            <h1 className="text-4xl font-bold">
-                                Aspi<span className="text-primary">Kot</span>
+                        <div className="group bg-black pl-12 pr-12 pt-1.5 pb-1.5 rounded-[60px] cursor-default transition-all duration-300 ease-in-out hover:shadow-[0_0_5px_var(--color-secondary)]">
+                            <h1 className="text-4xl font-bold text-white">
+                                Aspi
+                                <span className="text-primary transition-all duration-300 ease-in-out group-hover:drop-shadow-[0_0_10px_var(--color-primary)]">
+                                    Kot
+                                </span>
                             </h1>
                         </div>
                         <p className="text-secondary text-sm mt-1">
@@ -97,7 +100,7 @@ export default function Navbar() {
                     <div className="pt-4">
                         <button
                             type="submit"
-                            className="w-full bg-primary hover:bg-primary text-black font-bold py-3 rounded-full shadow-md transition-colors text-lg"
+                            className="w-full bg-primary transition-all duration-300 ease-in-out hover:bg-primary hover:text-gray-600 hover:shadow-[0_0_5px_var(--color-primary)] text-black font-bold py-3 rounded-full text-lg"
                         >
                             Submit
                         </button>
