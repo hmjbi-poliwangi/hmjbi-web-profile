@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "../../public/logo-hmjbi.png";
-import Modal from "../Modal";
+import Modal from "../ui/Modal";
 
 export default function Navbar() {
     const [isModalOpen, setModalOpen] = useState(false);
