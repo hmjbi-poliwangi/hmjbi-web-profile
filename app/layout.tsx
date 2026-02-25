@@ -11,7 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
     return (
         <html lang="id">
-            <body className="bg-[var(--color-background)] text-[var(--color-text-white)] font-sans">
+            <body className="bg-(--color-background) text-text-white font-sans">
                 <Navbar />
                 <main>{children}</main>
                 <Footer />

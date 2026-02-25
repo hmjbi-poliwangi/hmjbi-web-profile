@@ -1,42 +1,42 @@
 import Section from "../components/layout/Section";
 import Container from "../components/layout/Container";
+import HeroSection from "@/components/sections/HeroSection";
+import AboutPreviewSection from "@/components/sections/AboutPreviewSection";
+import ActivityCard from "@/components/ui/ActivityCard";
+import CalenderSection from "@/components/sections/CalenderSection";
+import InstagramSection from "@/components/sections/InstagramSection";
+import DivisionCard from "@/components/ui/DivisionCard";
 
 export default function Home() {
     return (
         <>
             {/* Hero */}
-            <Section className="bg-[var(--color-secondary)] flex items-center justify-center">
-                <Container>
-                    <h1 className="text-[var(--color-primary)] text-5xl font-heading">
-                        Selamat Datang di HMJBI
-                    </h1>
-                    <p className="mt-4 text-[var(--color-text-white)]">
-                        Website resmi Himpunan Mahasiswa Jurusan Bahasa Indonesia
-                    </p>
-                </Container>
-            </Section>
+            <HeroSection />
 
             {/* About Section */}
-            <Section className="bg-[var(--color-background)] text-[var(--color-text-white)]">
+            <AboutPreviewSection />
+
+            {/* Activities Section */}
+            <Section className="bg-(--color-secondary) text-text-white">
                 <Container>
-                    <h2 className="mb-4 text-3xl font-heading">Tentang HMJBI</h2>
-                    <p>
-                        HMJBI adalah organisasi mahasiswa yang aktif dalam kegiatan akademik dan
-                        non-akademik.
-                    </p>
+                    <h2 className="mb-4 text-3xl font-heading">Kegiatan Kami</h2>
+                    <ActivityCard />
                 </Container>
             </Section>
 
-            {/* Activities Section */}
-            <Section className="bg-[var(--color-secondary)] text-[var(--color-text-white)]">
+            {/** Divisions Section */}
+            <Section className="bg-(--color-secondary) text-text-white">
                 <Container>
-                    <h2 className="mb-4 text-3xl font-heading">Kegiatan Kami</h2>
-                    <p>
-                        Kami mengadakan workshop, seminar, dan berbagai kegiatan sosial untuk
-                        mahasiswa.
-                    </p>
+                    <h2 className="mb-4 text-3xl font-heading">Divisi Kami</h2>
+                    <DivisionCard />
                 </Container>
             </Section>
+
+            {/** Calender Section */}
+            <CalenderSection />
+
+            {/** Instagram Section */}
+            <InstagramSection />
         </>
     );
 }
