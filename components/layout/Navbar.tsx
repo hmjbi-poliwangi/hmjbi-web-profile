@@ -52,17 +52,19 @@ export default function Navbar() {
                 onClose={() => setModalOpen(false)}
                 title={
                     <div className="header-wrap flex flex-col items-center">
-                        <div className="group bg-black pl-12 pr-12 pt-1.5 pb-1.5 rounded-[60px] cursor-default transition-all duration-300 ease-in-out hover:shadow-[0_0_5px_var(--color-secondary)]">
-                            <h1 className="text-4xl font-bold text-white">
-                                Aspi
-                                <span className="text-primary transition-all duration-300 ease-in-out group-hover:drop-shadow-[0_0_10px_var(--color-primary)]">
-                                    Kot
-                                </span>
-                            </h1>
+                        <div className="group">
+                            <div className="bg-black pl-12 pr-12 pt-1.5 pb-1.5 rounded-[60px] cursor-default transition-all duration-300 ease-in-out hover:shadow-[0_0_5px_var(--color-secondary)]">
+                                <h1 className="text-4xl font-bold text-white">
+                                    Aspi
+                                    <span className="text-primary transition-all duration-300 ease-in-out group-hover:drop-shadow-[0_0_10px_var(--color-primary)]">
+                                        Kot
+                                    </span>
+                                </h1>
+                            </div>
+                            <p className="text-secondary text-sm mt-1 transition-all duration-300 ease-in-out group-hover:underline underline-offset-6">
+                                Kirim Aspirasimu Secara Anonim
+                            </p>
                         </div>
-                        <p className="text-secondary text-sm mt-1">
-                            Kirim Aspirasimu Secara Anonim
-                        </p>
                     </div>
                 }
             >
@@ -73,7 +75,7 @@ export default function Navbar() {
                         </label>
                         <input
                             type="text"
-                            className="w-full bg-white border border-zinc-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary shadow-inner"
+                            className="w-full bg-white border border-zinc-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary  focus:border-primary hover:border-primary hover:shadow-[0_0_5px_var(--color-primary)] shadow-inner"
                         />
                     </div>
 
@@ -83,7 +85,7 @@ export default function Navbar() {
                         </label>
                         <input
                             type="tel"
-                            className="w-full bg-white border border-zinc-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary shadow-inner"
+                            className="w-full bg-white border border-zinc-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary  focus:border-primary hover:border-primary hover:shadow-[0_0_5px_var(--color-primary)] shadow-inner"
                         />
                     </div>
 
@@ -93,7 +95,7 @@ export default function Navbar() {
                         </label>
                         <textarea
                             rows={6}
-                            className="w-full bg-white border border-zinc-300 rounded-2xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary shadow-inner resize-none"
+                            className="w-full bg-white border border-zinc-300 rounded-2xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary  focus:border-primary hover:border-primary hover:shadow-[0_0_5px_var(--color-primary)] shadow-inner resize-none"
                         />
                     </div>
 
