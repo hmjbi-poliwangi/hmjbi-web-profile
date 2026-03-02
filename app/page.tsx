@@ -6,6 +6,29 @@ import ActivityCard from "@/components/ui/ActivityCard";
 import CalenderSection from "@/components/sections/CalenderSection";
 import InstagramSection from "@/components/sections/InstagramSection";
 import DivisionCard from "@/components/ui/DivisionCard";
+import { Event } from "@/types/event";
+
+// DATA DUMMY: Pastikan bulan Maret adalah angka 2 (Jan=0, Feb=1, Mar=2)
+const dummyData: Event[] = [
+    {
+        date: new Date(2026, 2, 2),
+        title: "Workshop Next.js",
+        description: "Belajar membangun aplikasi modern dengan Next.js 14 dan Server Components.",
+        image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&q=80",
+    },
+    {
+        date: new Date(2026, 2, 7),
+        title: "Gathering Komunitas",
+        description: "Kumpul santai bareng developer lokal di Cafe Digital untuk networking.",
+        image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800&q=80",
+    },
+    {
+        date: new Date(2026, 2, 22),
+        title: "Peluncuran Fitur",
+        description: "Demonstrasi fitur terbaru kalender interaktif kepada seluruh tim.",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+    },
+];
 
 export default function Home() {
     return (
@@ -33,7 +56,7 @@ export default function Home() {
             </Section>
 
             {/** Calender Section */}
-            <CalenderSection />
+            <CalenderSection dataKegiatan={dummyData} />
 
             {/** Instagram Section */}
             <InstagramSection />
