@@ -46,7 +46,7 @@ h6 {
     GLOBAL LAYOUT
 ======================== */
 .container-main {
-    max-width: 1200px;
+    max-width: 2000px;
     margin: auto;
     padding-left: var(--spacing-container);
     padding-right: var(--spacing-container);
