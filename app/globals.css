@@ -48,8 +48,6 @@ h6 {
 .container-main {
     max-width: 2000px;
     margin: auto;
-    padding-left: var(--spacing-container);
-    padding-right: var(--spacing-container);
 }
 
 .section {
