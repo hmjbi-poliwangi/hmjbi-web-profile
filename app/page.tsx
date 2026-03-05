@@ -7,6 +7,8 @@ import CalenderSection from "@/components/sections/CalenderSection";
 import InstagramSection from "@/components/sections/InstagramSection";
 import DivisionCard from "@/components/ui/DivisionCard";
 import { Event } from "@/types/event";
+import { activities } from "@/components/ui/ActivityCard";
+import { Activity } from "react";
 
 // DATA DUMMY: Pastikan bulan Maret adalah angka 2 (Jan=0, Feb=1, Mar=2)
 const dummyData: Event[] = [
@@ -30,6 +32,7 @@ const dummyData: Event[] = [
     },
 ];
 
+
 export default function Home() {
     return (
         <>
@@ -43,7 +46,18 @@ export default function Home() {
             <Section className="bg-(--color-secondary) text-text-white">
                 <Container>
                     <h2 className="mb-4 text-3xl font-heading">Kegiatan Kami</h2>
-                    <ActivityCard />
+                    <div className="flex flex-wrap gap-x-5 gap-y-5 align-items-center justify-center">
+                        {activities.map((aktifitas) => (
+                            <ActivityCard
+                                id={aktifitas.id}
+                                judul={aktifitas.judul}
+                                deskripsi={aktifitas.deskripsi}
+                                tanggal={aktifitas.tanggal}
+                                status={aktifitas.status}
+                                gambar={aktifitas.gambar}
+                            />
+                        ))}
+                    </div>
                 </Container>
             </Section>
 
