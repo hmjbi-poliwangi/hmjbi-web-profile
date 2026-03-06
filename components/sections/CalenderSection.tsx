@@ -61,12 +61,9 @@ const CalenderSection = ({ dataKegiatan }: { dataKegiatan: Event[] }) => {
             {/* HEADER */}
             <div className="flex flex-col items-center justify-between gap-4 px-2 mb-8 md:flex-row">
                 <div className="flex items-center gap-2">
-                    <span className="bg-black text-white px-4 py-1.5 rounded-lg font-bold text-sm tracking-wide uppercase">
-                        Kalender
-                    </span>
-                    <span className="font-bold tracking-widest text-yellow-500 uppercase">
-                        Kegiatan
-                    </span>
+                    <h2 className="text-3xl text-center md:text-4xl mb-10 font-bold text-black">
+                        Kalender <span className="text-[#FFD700]">HMJBI</span>
+                    </h2>
                 </div>
 
                 <div className="flex items-center gap-3 p-2 border border-gray-100 bg-gray-50 rounded-2xl">

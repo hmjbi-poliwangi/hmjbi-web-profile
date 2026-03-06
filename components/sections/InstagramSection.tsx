@@ -1,7 +1,9 @@
 export default function InstagramSection() {
     return (
         <div>
-            <h2 className="mb-4 text-3xl font-heading">Instagram HMJBI</h2>
+            <h2 className="text-3xl text-center md:text-4xl mb-10 font-bold text-white">
+                Instagram <span className="text-[#FFD700]">HMJBI</span>
+            </h2>
             <div className="w-full mx-auto overflow-hidden border shadow-lg rounded-2xl border-zinc-800">
                 <div className="w-full">
                     <iframe

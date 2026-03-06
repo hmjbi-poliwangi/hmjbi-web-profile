@@ -1,3 +1,5 @@
+"use client"
+
 import Section from "../components/layout/Section";
 import Container from "../components/layout/Container";
 import HeroSection from "@/components/sections/HeroSection";
@@ -7,10 +9,44 @@ import CalenderSection from "@/components/sections/CalenderSection";
 import InstagramSection from "@/components/sections/InstagramSection";
 import DivisionCard from "@/components/ui/DivisionCard";
 import { Event } from "@/types/event";
-import { activities } from "@/components/ui/ActivityCard";
+import { Division } from "@/types/division";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode, Pagination } from "swiper/modules";
+import { Activity } from "@/types/activity";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/pagination";
 
-// DATA DUMMY: Pastikan bulan Maret adalah angka 2 (Jan=0, Feb=1, Mar=2)
-const dummyData: Event[] = [
+// DATA DUMMY
+const activities: Activity[] = [
+    {
+        id: "1",
+        judul: "Judul Kegiatan 1",
+        deskripsi: "Deskripsi Kegiatan 1 Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet",
+        tanggal: "12 Desember 2024",
+        status: "Ongoing",
+        gambar: "/test-images/digital-photo-frames.jpg",
+    },
+    {
+        id: "2",
+        judul: "Judul Kegiatan 2",
+        deskripsi: "Deskripsi Kegiatan 2 Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet",
+        tanggal: "12 Desember 2024",
+        status: "Completed",
+        gambar: "/test-images/test-photo.jpg",
+    },
+    {
+        id: "3",
+        judul: "Judul Kegiatan 3",
+        deskripsi: "Deskripsi Kegiatan 3 Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet",
+        tanggal: "12 Desember 2024",
+        status: "Upcoming",
+        gambar: "/test-images/images.jpg",
+    },
+];
+
+const dummyDataEvent: Event[] = [
     {
         date: new Date(2026, 2, 2),
         title: "Workshop Next.js",
@@ -31,6 +67,37 @@ const dummyData: Event[] = [
     },
 ];
 
+const dummyDataDivision: Division[] = [
+    {
+        name: "PH",
+        imageUrl: "/logo-departemen/PH.png",
+    },
+    {
+        name: "PSDM",
+        imageUrl: "/logo-departemen/PSDM.png",
+    },
+    {
+        name: "MEDKOM",
+        imageUrl: "/logo-departemen/MEDKOMINFO.png",
+    },
+    {
+        name: "KWU",
+        imageUrl: "/logo-departemen/KWU.png",
+    },
+    {
+        name: "HUMAS",
+        imageUrl: "/logo-departemen/HUMAS.png",
+    },
+    {
+        name: "PENGMAS",
+        imageUrl: "/logo-departemen/PENGMAS.png",
+    },
+    {
+        name: "RISTEK",
+        imageUrl: "/logo-departemen/RISTEK.png",
+    },
+];
+
 export default function Home() {
     return (
         <>
@@ -43,7 +110,9 @@ export default function Home() {
             {/* Activities Section */}
             <Section className="bg-(--color-secondary) text-text-white">
                 <Container>
-                    <h2 className="mb-4 text-3xl font-heading">Kegiatan Kami</h2>
+                    <h2 className="text-3xl text-center md:text-4xl mb-10 font-bold text-white">
+                        Kegiatan <span className="text-[#FFD700]">HMJBI</span>
+                    </h2>
                     <div className="grid justify-center grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 align-items-center">
                         {activities.map((aktifitas) => (
                             <ActivityCard
@@ -68,15 +137,42 @@ export default function Home() {
             {/** Divisions Section */}
             <Section className="bg-(--color-secondary) text-text-white">
                 <Container>
-                    <h2 className="mb-4 text-3xl font-heading">Divisi Kami</h2>
-                    <DivisionCard />
+                    <h2 className="text-3xl text-center md:text-4xl mb-10 font-bold text-white">
+                        Divisi <span className="text-[#FFD700]">HMJBI</span>
+                    </h2>
+                    <Swiper
+                        slidesPerView={1.5} // Terlihat sedikit card di samping untuk kesan slider
+                        spaceBetween={20}
+                        freeMode={true}
+                        pagination={{ clickable: true }}
+                        modules={[FreeMode, Pagination]}
+                        breakpoints={{
+                            // Ukuran layar tablet (md)
+                            640: {
+                                slidesPerView: 2.5,
+                                spaceBetween: 30,
+                            },
+                            // Ukuran layar desktop (lg)
+                            1024: {
+                                slidesPerView: 3.5,
+                                spaceBetween: 40,
+                            },
+                        }}
+                        className="pb-12" // Padding bawah agar pagination titik-titik tidak tertutup
+                    >
+                        {dummyDataDivision.map((division) => (
+                            <SwiperSlide key={division.name}>
+                                <DivisionCard dataDivision={division} />
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
                 </Container>
             </Section>
 
             {/** Calender Section */}
             <Section className="bg-(--color-secondary) text-text-white">
                 <Container>
-                    <CalenderSection dataKegiatan={dummyData} />
+                    <CalenderSection dataKegiatan={dummyDataEvent} />
                 </Container>
             </Section>
 

@@ -1,42 +1,7 @@
+import { Activity } from "@/types/activity";
 import Image from "next/image";
 
-interface ActivityCardProps {
-    id: string;
-    judul: string;
-    deskripsi: string;
-    tanggal: string;
-    status: 'Ongoing' | 'Completed' | 'Upcoming';
-    gambar: string;
-}
-
-export const activities: ActivityCardProps[] = [
-    {
-        id: "1",
-        judul: "Judul Kegiatan 1",
-        deskripsi: "Deskripsi Kegiatan 1 Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet",
-        tanggal: "12 Desember 2024",
-        status: "Ongoing",
-        gambar: "/test-images/digital-photo-frames.jpg",
-    },
-    {
-        id: "2",
-        judul: "Judul Kegiatan 2",
-        deskripsi: "Deskripsi Kegiatan 2 Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet",
-        tanggal: "12 Desember 2024",
-        status: "Completed",
-        gambar: "/test-images/test-photo.jpg",
-    },
-    {
-        id: "3",
-        judul: "Judul Kegiatan 3",
-        deskripsi: "Deskripsi Kegiatan 3 Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet",
-        tanggal: "12 Desember 2024",
-        status: "Upcoming",
-        gambar: "/test-images/images.jpg",
-    },
-];
-
-export default function ActivityCard({ judul, deskripsi, tanggal, status, gambar }: ActivityCardProps) {
+export default function ActivityCard({ judul, deskripsi, tanggal, status, gambar }: Activity) {
     const statusColors = {
         Ongoing: 'bg-blue-500/45 border-3 border-blue-400/80 text-white group-hover:text-blue-300',
         Completed: 'bg-green-500/45 border-3 border-green-400/80 text-white group-hover:text-green-300',
