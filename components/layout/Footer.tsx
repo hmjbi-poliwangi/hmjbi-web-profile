@@ -19,13 +19,13 @@ export default function Footer() {
                       {/* Sosmed Icons */}
                       <div className="flex gap-4 pt-2">
                           <a
-                              href="#"
+                              href="https://www.tiktok.com/@hmjbi_poliwangi"
                               className="p-3 border border-zinc-700 rounded-xl transition-all duration-300 hover:border-primary hover:text-primary hover:shadow-[0_0_10px_rgba(255,255,0,0.2)]"
                           >
                               <FaTiktok size={24} />
                           </a>
                           <a
-                              href="#"
+                              href="https://www.instagram.com/tipoliwangi/"
                               className="p-3 border border-zinc-700 rounded-xl transition-all duration-300 hover:border-primary hover:text-primary hover:shadow-[0_0_10px_rgba(255,255,0,0.2)]"
                           >
                               <FaInstagram size={24} />

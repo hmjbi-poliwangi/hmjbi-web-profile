@@ -54,3 +54,18 @@ h6 {
     padding-top: var(--spacing-section);
     padding-bottom: var(--spacing-section);
 }
+
+/*=========================
+   SWIPPER SLIDE CUSTOM
+===========================*/
+/* Membuat titik tidak aktif menjadi putih */
+.swiper-pagination-bullet {
+  background-color: #ffffff !important;
+  opacity: 0.5 !important; /* Agar tidak terlalu terang jika dibandingkan yang aktif */
+}
+
+/* Membuat titik aktif tetap berwarna biru (sesuai gambar Anda) */
+.swiper-pagination-bullet-active {
+  background-color: #007bff !important; /* Warna biru sesuai gambar */
+  opacity: 1 !important;
+}
