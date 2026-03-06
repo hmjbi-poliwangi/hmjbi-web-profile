@@ -1,7 +1,7 @@
 export default function Footer() {
     return (
-        <footer className="bg-[var(--color-secondary)] py-8 mt-16">
-            <div className="container-main text-center text-[var(--color-text-white)] text-sm">
+        <footer className="bg-(--color-secondary) pb-8 mt-4">
+            <div className="text-sm text-center container-main text-text-white">
                 © {new Date().getFullYear()} HMJBI. All rights reserved.
             </div>
         </footer>

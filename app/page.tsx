@@ -57,6 +57,11 @@ export default function Home() {
                             />
                         ))}
                     </div>
+                    <div className="mt-5 text-center">
+                        <button className="px-10 py-3 text-xs font-black tracking-widest text-black uppercase transition-all transform bg-yellow-400 rounded-full hover:bg-yellow-500 hover:scale-105">
+                            Lihat Lainnya
+                        </button>
+                    </div>
                 </Container>
             </Section>
 
