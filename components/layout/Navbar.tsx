@@ -12,7 +12,7 @@ export default function Navbar() {
 
     const navLinks = [
         { name: "Beranda", href: "/" },
-        { name: "Divisi", href: "/about" },
+        { name: "Divisi", href: "/division" },
         { name: "Kegiatan", href: "/activities" },
     ];
 
