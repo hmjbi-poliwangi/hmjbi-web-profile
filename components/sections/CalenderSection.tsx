@@ -18,17 +18,13 @@ import { id } from "date-fns/locale";
 import Image from "next/image";
 import { Event } from "@/types/event";
 
-
 const CalenderSection = ({ dataKegiatan }: { dataKegiatan: Event[] }) => {
-    // Inisialisasi: langsung pilih hari ini
     const today = new Date();
     const [currentMonth, setCurrentMonth] = useState(today);
     const [selectedDate, setSelectedDate] = useState<Date>(today);
 
-    // Helper untuk membandingkan tanggal tanpa jam (Sangat Penting!)
     const toDateString = (date: Date) => format(date, "yyyy-MM-dd");
 
-    // Logika Kalender
     const monthStart = startOfMonth(currentMonth);
     const monthEnd = endOfMonth(monthStart);
     const startDate = startOfWeek(monthStart, { weekStartsOn: 1 });
@@ -37,12 +33,10 @@ const CalenderSection = ({ dataKegiatan }: { dataKegiatan: Event[] }) => {
     const calendarDays = eachDayOfInterval({ start: startDate, end: endDate });
     const dayNames = ["SENIN", "SELASA", "RABU", "KAMIS", "JUM'AT", "SABTU", "MINGGU"];
 
-    // Ambil event berdasarkan tanggal yang dipilih (Comparison via String)
     const activeEvent = dataKegiatan.find(
         (ev) => toDateString(new Date(ev.date)) === toDateString(selectedDate)
     );
 
-    // Navigasi
     const nextMonth = () => setCurrentMonth(addMonths(currentMonth, 1));
     const prevMonth = () => setCurrentMonth(subMonths(currentMonth, 1));
 
@@ -61,7 +55,7 @@ const CalenderSection = ({ dataKegiatan }: { dataKegiatan: Event[] }) => {
             {/* HEADER */}
             <div className="flex flex-col items-center justify-between gap-4 px-2 mb-8 md:flex-row">
                 <div className="flex items-center gap-2">
-                    <h2 className="text-3xl text-center md:text-4xl mb-10 font-bold text-black">
+                    <h2 className="mb-10 text-3xl font-bold text-center text-black md:text-4xl">
                         Kalender <span className="text-[#FFD700]">HMJBI</span>
                     </h2>
                 </div>
@@ -108,14 +102,13 @@ const CalenderSection = ({ dataKegiatan }: { dataKegiatan: Event[] }) => {
                     </button>
                 </div>
             </div>
-
             <div className="grid items-stretch grid-cols-1 gap-8 lg:grid-cols-2">
                 {/* KIRI: Card Detail Event */}
                 <div className="relative flex flex-col bg-zinc-900 rounded-[2.5rem] border-[3px] border-yellow-400 overflow-hidden shadow-xl min-h-112.5">
                     <div className="relative h-56 overflow-hidden bg-zinc-800">
                         {activeEvent?.image ? (
                             <Image
-                                key={activeEvent.image} // Key memaksa re-render saat gambar berubah
+                                key={activeEvent.image}
                                 src={activeEvent.image}
                                 alt="event"
                                 fill
@@ -143,9 +136,13 @@ const CalenderSection = ({ dataKegiatan }: { dataKegiatan: Event[] }) => {
                                 <p className="max-w-md mb-8 text-sm italic leading-relaxed text-gray-400">
                                     {activeEvent.description}
                                 </p>
-                                <button className="px-10 py-3 text-xs font-black tracking-widest text-black uppercase transition-all transform bg-yellow-400 rounded-full hover:bg-yellow-500 hover:scale-105">
-                                    DETAIL INFO
-                                </button>
+                                <a
+                                    href={`/activities/detail-activity/${activeEvent.id}`}
+                                >
+                                    <button className="px-10 py-3 text-xs font-black tracking-widest text-black uppercase transition-all transform bg-yellow-400 rounded-full hover:bg-yellow-500 hover:scale-105">
+                                        DETAIL INFO
+                                    </button>
+                                </a>
                             </div>
                         ) : (
                             <div className="flex flex-col items-center justify-center h-full opacity-50">
