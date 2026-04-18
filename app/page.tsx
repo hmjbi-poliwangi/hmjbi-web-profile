@@ -10,11 +10,9 @@ import InstagramSection from "@/components/sections/InstagramSection";
 import DivisionCard from "@/components/ui/DivisionCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Pagination } from "swiper/modules";
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
-// Import Data
 import { dataEvents } from "@/data/events";
 import { dataDivisions } from "@/data/division";
 import Link from "next/link";
@@ -35,24 +33,22 @@ export default function Home() {
                         Divisi <span className="text-[#FFD700]">HMJBI</span>
                     </h2>
                     <Swiper
-                        slidesPerView={1.5} // Terlihat sedikit card di samping untuk kesan slider
+                        slidesPerView={1.5}
                         spaceBetween={20}
                         freeMode={true}
                         pagination={{ clickable: true }}
                         modules={[FreeMode, Pagination]}
                         breakpoints={{
-                            // Ukuran layar tablet (md)
                             640: {
                                 slidesPerView: 2.5,
                                 spaceBetween: 30,
                             },
-                            // Ukuran layar desktop (lg)
                             1024: {
                                 slidesPerView: 3.5,
                                 spaceBetween: 40,
                             },
                         }}
-                        className="pb-12" // Padding bawah agar pagination titik-titik tidak tertutup
+                        className="pb-12"
                     >
                         {dataDivisions.map((division) => (
                             <SwiperSlide key={division.name}>
