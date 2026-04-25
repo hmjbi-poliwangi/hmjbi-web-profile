@@ -1,4 +1,4 @@
-import { Division } from "@/data/division";
+import { Division } from "@/types/division";
 import Image from "next/image";
 
 export default function DivisionCard({ dataDivision }: { dataDivision: Division }) {
