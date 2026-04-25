@@ -1,6 +1,6 @@
-import { Division } from "@/types/division";
+import { DivisionList } from "@/types/division";
 
-export const dataDivisions: Division[] = [
+export const dataDivisions: DivisionList[] = [
     {
         name: "PH",
         imageUrl: "/logo-departemen/PH.png",
