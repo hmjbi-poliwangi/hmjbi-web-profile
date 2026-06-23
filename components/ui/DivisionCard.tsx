@@ -1,22 +1,28 @@
 import { Division } from "@/types/division";
 import Image from "next/image";
 
-export default function DivisionCard({ dataDivision }: { dataDivision: Division }) {
+export default function DivisionCard({
+    dataDivision,
+    variant = "logo",
+}: {
+    dataDivision: Division;
+    variant?: "logo" | "person";
+}) {
+    const aspectClass = variant === "person" ? "aspect-[3/4]" : "aspect-4/3";
+    const fitClass = variant === "person" ? "object-cover" : "object-contain p-4";
     return (
-        <div className="flex flex-col items-center mb-10 border-white cursor-pointer group">
+        <div className="flex flex-col items-center border-white cursor-pointer group">
             {/* Container Gambar/Frame */}
-            {/* Perbaikan: Menggunakan aspect-[4/3] agar Tailwind bisa membacanya dengan benar */}
-            <div className="w-full aspect-4/3 bg-zinc-300 rounded-2xl overflow-hidden relative border border-white/5 transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(255,215,0,0.2)] group-hover:border-[#FFD700]/30">
+            <div
+                className={`w-full ${aspectClass} bg-zinc-300 rounded-2xl overflow-hidden relative border border-white/5 transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(255,215,0,0.2)] group-hover:border-[#FFD700]/30`}
+            >
                 {dataDivision.imageUrl ? (
                     <Image
-                        // Perbaikan: Naikkan resolusi bawaan agar gambar tidak blur di layar besar
                         width={400}
                         height={300}
                         src={dataDivision.imageUrl}
                         alt={dataDivision.name}
-                        // PERUBAHAN UTAMA: object-cover diganti menjadi object-contain
-                        // Tambahan p-4 agar gambar punya jarak dari tepi kotak
-                        className="object-contain w-full h-full p-4 transition-transform duration-500 group-hover:scale-110"
+                        className={`w-full h-full ${fitClass} transition-transform duration-500 group-hover:scale-110`}
                     />
                 ) : (
                     /* Placeholder jika gambar tidak ada */
@@ -31,10 +37,13 @@ export default function DivisionCard({ dataDivision }: { dataDivision: Division 
                 <div className="absolute inset-0 transition-colors bg-black/0 group-hover:bg-black/10"></div>
             </div>
 
-            {/* Nama Divisi */}
-            <h3 className="mt-4 text-lg font-bold tracking-tight text-white transition-colors md:text-xl group-hover:text-[#FFD700]">
+            {/* Nama */}
+            <h3 className="mt-4 text-lg font-bold tracking-tight text-center text-white transition-colors md:text-xl group-hover:text-[#FFD700] text-balance leading-tight">
                 {dataDivision.name}
             </h3>
+            {dataDivision.role && (
+                <p className="mt-1 text-sm text-gray-400 text-center">{dataDivision.role}</p>
+            )}
         </div>
     );
 }

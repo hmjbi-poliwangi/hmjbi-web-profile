@@ -6,10 +6,23 @@ export interface DivisionList {
 export interface Division {
     name: string;
     imageUrl?: string;
-    imageCoordinator?: string;
+    role?: string;
+    coordinator?: {
+        name: string;
+        image: string;
+    };
     description?: string;
     members?: {
         name: string;
         imageMember: string;
+        role?: string;
+    }[];
+    biro?: {
+        name: string;
+        members: {
+            name: string;
+            imageMember: string;
+            role?: string;
+        }[];
     }[];
 }
