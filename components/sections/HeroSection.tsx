@@ -4,23 +4,24 @@ import Section from "../layout/Section";
 
 export default function HeroSection() {
     return (
-        <Section className="bg-(--color-secondary) flex items-center justify-center">
+        <Section className="bg-(--color-secondary) flex items-center justify-center pt-10 md:pt-16">
             <Container>
                 <div className="z-10 flex flex-col items-center text-center px-4">
                     {/* Teks HMJBI Atas */}
-                    <h1 className="text-6xl md:text-8xl font-bold tracking-tighter mb-4">
+                    <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-2">
                         <span className="text-white">HM</span>
                         <span className="text-[#FFD700]">JBI</span>
                     </h1>
 
                     {/* Logo Utama */}
-                    <div className="w-48 h-48 md:w-64 md:h-64 my-6">
+                    <div className="w-36 h-36 md:w-48 md:h-48 my-4">
                         <Image
-                            width={100}
-                            height={100}
+                            width={500}
+                            height={436}
                             src="/logo-hmjbi.png"
                             alt="Logo HMJBI"
                             className="w-full h-full object-contain"
+                            priority
                         />
                     </div>
 

@@ -34,7 +34,7 @@ export default function StrukturOrganisasiSection() {
 
                             return (
                                 <Link key={index} href={`/division/detail-division/${item.name}`}>
-                                    <DivisionCard dataDivision={modifiedItem} />
+                                    <DivisionCard variant="group" dataDivision={modifiedItem} />
                                 </Link>
                             );
                         })}
@@ -58,7 +58,7 @@ export default function StrukturOrganisasiSection() {
 
                             return (
                                 <Link key={index} href={`/division/detail-division/${item.name}`}>
-                                    <DivisionCard dataDivision={modifiedItem} />
+                                    <DivisionCard variant="group" dataDivision={modifiedItem} />
                                 </Link>
                             );
                         })}

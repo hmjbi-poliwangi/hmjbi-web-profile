@@ -1,4 +1,3 @@
-import { LeaderCard } from "@/components/ui/LeaderCard";
 import { MissionSection } from "@/components/sections/MissionSection";
 import { VisionSection } from "@/components/sections/VisionSection";
 import Image from "next/image";
@@ -26,12 +25,6 @@ export default function HMJBIPage() {
     ];
     return (
         <main className="min-h-screen bg-[#111111] font-sans selection:bg-yellow-400 selection:text-black pb-20">
-            {/* Leader Section */}
-            <section className="flex flex-col items-center justify-center gap-8 py-10 md:flex-row">
-                <LeaderCard title="Ketua Himpunan" imageSrc="/test-images/photographer.jpg" />
-                <LeaderCard title="Wakil Kahim" imageSrc="/test-images/photographer.jpg" />
-            </section>
-
             {/* Vision Section */}
             <VisionSection vision={vision} />
 

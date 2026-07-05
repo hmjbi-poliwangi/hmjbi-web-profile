@@ -1,6 +1,7 @@
+import Image from "next/image";
 import { notFound } from "next/navigation";
-import { dataDivisions } from "@/data/division"; // Sesuaikan path
-import DivisionCard from "@/components/ui/DivisionCard"; // Sesuaikan path
+import { dataDivisions } from "@/data/division";
+import DivisionCard from "@/components/ui/DivisionCard";
 
 // 1. Ubah tipe params menjadi Promise
 interface DetailDivisionProps {
@@ -40,20 +41,57 @@ export default async function DetailDivisionPage({ params }: DetailDivisionProps
                     </p>
                 </div>
 
-                {/* --- KORDINATOR (skip for Ketua & Wakil) --- */}
+                {/* --- FOTO BERSAMA + KORDINATOR --- */}
                 {!isKetuaWakil && divisionData.coordinator && (
-                    <div className="mb-14 md:mb-10 pb-6 md:pb-0 border-b border-yellow-400/30 md:border-0">
-                        <div className="flex justify-center">
-                            <div className="w-full max-w-72">
-                                <DivisionCard
-                                    variant="person"
-                                    dataDivision={{
-                                        name: divisionData.coordinator.name,
-                                        imageUrl: divisionData.coordinator.image || "",
-                                        role: "Koordinator",
-                                    }}
+                    <div className="relative mb-14 md:mb-10 overflow-hidden rounded-3xl">
+                        {/* Background group photo */}
+                        <div className="absolute inset-0 w-full h-full">
+                            <div className="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 relative">
+                                <Image
+                                    width={800}
+                                    height={450}
+                                    src={divisionData.imageUrl || "/logo-hmjbi.png"}
+                                    alt=""
+                                    className="w-full h-full object-cover opacity-20"
                                 />
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-black/40 to-transparent"></div>
                             </div>
+                        </div>
+                        <div className="relative z-10 py-10 md:py-16">
+                            <div className="flex justify-center">
+                                <div className="w-full max-w-72">
+                                    <DivisionCard
+                                        variant="person"
+                                        featured
+                                        dataDivision={{
+                                            name: divisionData.coordinator.name,
+                                            imageUrl: divisionData.coordinator.image || "",
+                                            role: "Koordinator",
+                                        }}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {/* --- KETUA & WAKIL (keduanya featured) --- */}
+                {isKetuaWakil && divisionData.members && (
+                    <div className="mb-14 md:mb-10 pb-6 md:pb-0">
+                        <div className="flex flex-wrap justify-center gap-8">
+                            {divisionData.members.map((member, idx) => (
+                                <div key={idx} className="w-full max-w-72">
+                                    <DivisionCard
+                                        variant="person"
+                                        featured
+                                        dataDivision={{
+                                            name: member.name,
+                                            imageUrl: member.imageMember || "",
+                                            role: member.role || "",
+                                        }}
+                                    />
+                                </div>
+                            ))}
                         </div>
                     </div>
                 )}
@@ -69,14 +107,14 @@ export default async function DetailDivisionPage({ params }: DetailDivisionProps
                                 <span className="text-white">Biro </span>
                                 <span className="text-yellow-400">{b.name}</span>
                             </h2>
-                            <div className="flex flex-wrap justify-center gap-5">
+                            <div className="flex flex-wrap justify-center gap-5 max-w-3xl mx-auto stagger-fade-in">
                                 {b.members.map((member, mIdx) => {
                                     const memberName =
                                         member.name.trim() !== ""
                                             ? member.name
                                             : `${b.name} ${mIdx + 1}`;
                                     return (
-                                        <div key={mIdx} className="w-full sm:w-60">
+                                        <div key={mIdx} className="w-60">
                                             <DivisionCard
                                                 variant="person"
                                                 dataDivision={{
@@ -93,37 +131,41 @@ export default async function DetailDivisionPage({ params }: DetailDivisionProps
                     ))}
 
                 {/* --- ANGGOTA / MEMBERS FLAT (for divisions without biro) --- */}
-                {!hasBiro && divisionData.members && divisionData.members.length > 0 && (
-                    <div>
-                        <h2 className="text-2xl font-bold text-yellow-400 text-center mb-6">
-                            {isKetuaWakil ? "Pengurus Inti" : "Anggota"}
-                        </h2>
-                        <div className="flex flex-wrap justify-center gap-5">
-                            {divisionData.members.map((member, index) => {
-                                const memberName =
-                                    member.name.trim() !== ""
-                                        ? member.name
-                                        : `${divisionData.name} ${index + 1}`;
-                                const isCoordinatorMember =
-                                    !isKetuaWakil && divisionData.coordinator?.name === member.name;
-                                if (isCoordinatorMember) return null;
+                {!hasBiro &&
+                    !isKetuaWakil &&
+                    divisionData.members &&
+                    divisionData.members.length > 0 && (
+                        <div>
+                            <h2 className="text-2xl font-bold text-yellow-400 text-center mb-6">
+                                {isKetuaWakil ? "Pengurus Inti" : "Anggota"}
+                            </h2>
+                            <div className="flex flex-wrap justify-center gap-5 max-w-3xl mx-auto stagger-fade-in">
+                                {divisionData.members.map((member, index) => {
+                                    const memberName =
+                                        member.name.trim() !== ""
+                                            ? member.name
+                                            : `${divisionData.name} ${index + 1}`;
+                                    const isCoordinatorMember =
+                                        !isKetuaWakil &&
+                                        divisionData.coordinator?.name === member.name;
+                                    if (isCoordinatorMember) return null;
 
-                                return (
-                                    <div key={index} className="w-full sm:w-60">
-                                        <DivisionCard
-                                            variant="person"
-                                            dataDivision={{
-                                                name: memberName,
-                                                imageUrl: member.imageMember || "",
-                                                role: member.role || "",
-                                            }}
-                                        />
-                                    </div>
-                                );
-                            })}
+                                    return (
+                                        <div key={index} className="w-60">
+                                            <DivisionCard
+                                                variant="person"
+                                                dataDivision={{
+                                                    name: memberName,
+                                                    imageUrl: member.imageMember || "",
+                                                    role: member.role || "",
+                                                }}
+                                            />
+                                        </div>
+                                    );
+                                })}
+                            </div>
                         </div>
-                    </div>
-                )}
+                    )}
             </div>
         </main>
     );
