@@ -24,7 +24,7 @@ export default function HMJBIPage() {
         },
     ];
     return (
-        <main className="min-h-screen bg-[#111111] font-sans selection:bg-yellow-400 selection:text-black pb-20">
+        <main className="min-h-screen bg-[#111111] font-sans pb-20">
             {/* Vision Section */}
             <VisionSection vision={vision} />
 

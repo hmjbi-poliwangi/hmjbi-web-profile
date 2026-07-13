@@ -5,10 +5,12 @@ export default function DivisionCard({
     dataDivision,
     variant = "logo",
     featured,
+    badgeText,
 }: {
     dataDivision: Division;
     variant?: "logo" | "person" | "group";
     featured?: boolean;
+    badgeText?: string;
 }) {
     const aspectClass =
         variant === "person" ? "aspect-[3/4]" : variant === "group" ? "aspect-video" : "aspect-4/3";
@@ -47,7 +49,7 @@ export default function DivisionCard({
                 {featured && (
                     <div className="absolute top-0 left-0 right-0 z-20 flex justify-center">
                         <div className="badge-slide-in bg-[#FFD700] text-black text-[10px] font-extrabold uppercase tracking-[0.15em] px-5 py-1.5 rounded-b-lg shadow-lg">
-                            Koordinator
+                            {badgeText || "Koordinator"}
                         </div>
                     </div>
                 )}

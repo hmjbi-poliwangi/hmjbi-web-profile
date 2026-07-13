@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Logo from "../../public/logo-hmjbi.png";
 import Modal from "../ui/Modal";
+import AspirationForm from "../ui/AspirationForm";
 
 export default function Navbar() {
     const [isModalOpen, setModalOpen] = useState(false);
@@ -122,85 +123,5 @@ export default function Navbar() {
                 <AspirationForm onClose={() => setModalOpen(false)} />
             </Modal>
         </>
-    );
-}
-
-function AspirationForm({ onClose }: { onClose: () => void }) {
-    const [name, setName] = useState("");
-    const [aspiration, setAspiration] = useState("");
-    const [submitted, setSubmitted] = useState(false);
-
-    useEffect(() => {
-        if (submitted) {
-            const timer = setTimeout(() => {
-                setName("");
-                setAspiration("");
-                setSubmitted(false);
-                onClose();
-            }, 2500);
-            return () => clearTimeout(timer);
-        }
-    }, [submitted, onClose]);
-
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        setSubmitted(true);
-    };
-
-    if (submitted) {
-        const finalName = name.trim() || "(anonim)";
-        return (
-            <div className="flex flex-col items-center justify-center py-8 space-y-4 animate-fade-in">
-                <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center animate-bounce-in">
-                    <svg
-                        className="w-8 h-8 text-white"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={3}
-                            d="M5 13l4 4L19 7"
-                        />
-                    </svg>
-                </div>
-                <p className="text-lg font-bold text-gray-800">Aspirasi Terkirim!</p>
-                <p className="text-sm text-gray-500 text-center max-w-xs">
-                    Terima kasih, <span className="font-semibold">{finalName}</span>. Aspirasi kamu
-                    sudah kami terima.
-                </p>
-                <div className="w-48 h-1.5 bg-gray-200 rounded-full overflow-hidden">
-                    <div className="h-full bg-green-500 rounded-full animate-shrink-width"></div>
-                </div>
-            </div>
-        );
-    }
-
-    return (
-        <form onSubmit={handleSubmit} className="space-y-4">
-            <input
-                type="text"
-                placeholder="Nama (kosongkan untuk anonim)"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FFD700] text-black"
-            />
-            <textarea
-                placeholder="Aspirasi"
-                value={aspiration}
-                onChange={(e) => setAspiration(e.target.value)}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FFD700] text-black"
-                rows={4}
-                required
-            ></textarea>
-            <button
-                type="submit"
-                className="w-full py-3 font-bold text-black bg-[#FFD700] rounded-lg transition-all hover:bg-yellow-500"
-            >
-                Kirim Aspirasi
-            </button>
-        </form>
     );
 }

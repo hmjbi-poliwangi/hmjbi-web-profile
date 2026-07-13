@@ -3,8 +3,10 @@ import { Division } from "@/types/division";
 export const dataDivisions: Division[] = [
     {
         name: "Ketua & Wakil",
+        slug: "ketua-wakil",
         imageUrl: "/logo-departemen/PH.png",
-
+        description:
+            "Memimpin dan mengkoordinasikan seluruh kegiatan organisasi, mengawasi jalannya program kerja, serta menjadi representasi HMJBI di internal dan eksternal.",
         members: [
             {
                 name: "RM. Devan Mangkuwardhana",
@@ -20,34 +22,38 @@ export const dataDivisions: Division[] = [
     },
     {
         name: "Sekretaris",
+        slug: "sekretaris",
         imageUrl: "/logo-departemen/PH.png",
+        description:
+            "Bertanggung jawab terhadap administrasi kegiatan HMJBI, pengelolaan dokumen, notulensi rapat, dan surat-menyurat organisasi.",
         coordinator: {
             name: "Yello Aurora Maulidie",
-            image: "/test-images/photographer.jpg",
+            image: "/people/ph/ph-sekretaris-umum-yello-idcard.webp",
         },
-        description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
         members: [
             {
                 name: "Yello Aurora Maulidie",
-                imageMember: "/test-images/photographer.jpg",
+                imageMember: "/people/ph/ph-sekretaris-umum-yello-idcard.webp",
                 role: "Koordinator",
             },
             {
                 name: "Rasya Aprilia",
-                imageMember: "",
+                imageMember: "/people/ph/ph-sekretaris2-rasya-idcard.webp",
                 role: "Staff",
             },
             {
                 name: "Try Amanda Helmi",
-                imageMember: "",
+                imageMember: "/people/ph/ph-sekretaris3-helmi-idcard.webp",
                 role: "Staff",
             },
         ],
     },
     {
         name: "Bendahara",
+        slug: "bendahara",
         imageUrl: "/logo-departemen/PH.png",
+        description:
+            "Bertanggung jawab terhadap pengelolaan keuangan HMJBI, penyusunan RAPB, dan pelaporan keuangan secara rutin.",
         coordinator: {
             name: "Muhammad Mufqi Fajar",
             image: "/people/ph/ph-bendahara-umum-fajar-idcard.webp",
@@ -67,11 +73,26 @@ export const dataDivisions: Division[] = [
     },
     {
         name: "HUMAS",
+        slug: "humas",
         imageUrl: "/logo-departemen/HUMAS.png",
+        description:
+            "Menjalin komunikasi dan relasi internal maupun eksternal, serta mewadahi aspirasi mahasiswa Jurusan Bisnis dan Informatika.",
         coordinator: {
             name: "Achmad Alfarizy Satriya Gautama",
             image: "/people/humas/humas-kor-fariz-idcard.webp",
         },
+        biro: [
+            {
+                name: "Internal",
+                tugas: "Menjalin hubungan kerja sama antar-departemen HMJBI dan dengan pihak jurusan, menjadi wadah aspirasi mahasiswa, serta bersinergi dengan Ketua Angkatan dalam menampung dan menyebarluaskan informasi jurusan.",
+                members: [],
+            },
+            {
+                name: "Eksternal",
+                tugas: "Menangani kerjasama luar HMJBI pada forum nasional Himpunan Jurusan Bisnis dan Informatika, kerjasama dengan mitra sponsorship, dan kerjasama dengan organisasi mahasiswa internal kampus Poliwangi.",
+                members: [],
+            },
+        ],
         members: [
             {
                 name: "Achmad Alfarizy Satriya Gautama",
@@ -99,6 +120,11 @@ export const dataDivisions: Division[] = [
                 role: "Staff",
             },
             {
+                name: "Andini Puspita Noviasari",
+                imageMember: "/people/humas/humas-staff-andini-idcard.webp",
+                role: "Staff",
+            },
+            {
                 name: "Aisa Lestari",
                 imageMember: "/people/humas/humas-staff-aisa-lestari.webp",
                 role: "Staff",
@@ -118,18 +144,14 @@ export const dataDivisions: Division[] = [
                 imageMember: "/people/humas/humas-staf-wildan-idcard.webp",
                 role: "Staff",
             },
-            {
-                name: "Andini Puspita Noviasari",
-                imageMember: "/people/humas/humas-staff-andini-idcard.webp",
-                role: "Staff",
-            },
         ],
     },
     {
         name: "RISTEK",
+        slug: "ristek",
         imageUrl: "/logo-departemen/RISTEK.png",
         description:
-            "Bidang yang bertanggung jawab mengembangkan dan memelihara teknologi informasi HMJBI.",
+            "Menganalisa permasalahan dan potensi internal HMJBI, serta memberikan solusi teknologi melalui riset dan pengembangan perangkat lunak maupun keras.",
         coordinator: {
             name: "Muhamad Abdul Ghofur",
             image: "/people/ristek/ristek-co-ghofur-idcard.webp",
@@ -186,14 +208,51 @@ export const dataDivisions: Division[] = [
                 role: "Staff",
             },
         ],
+        biro: [
+            {
+                name: "Research",
+                tugas: "Mendokumentasikan solusi digital yang dibuat Departemen RISTEK menjadi karya tulis ilmiah atau pelaporan yang mudah dipahami untuk pengembangan berikutnya.",
+                members: [],
+            },
+            {
+                name: "Software",
+                tugas: "Menjadi agen perubahan dan memberi solusi sesuai ilmu teknologi pengembangan perangkat lunak bagi permasalahan internal HMJBI.",
+                members: [],
+            },
+            {
+                name: "Hardware",
+                tugas: "Menjadi agen perubahan dan memberi solusi sesuai ilmu teknologi pengembangan perangkat keras bagi permasalahan internal HMJBI.",
+                members: [],
+            },
+        ],
     },
     {
         name: "PENGMAS",
+        slug: "pengmas",
         imageUrl: "/logo-departemen/PENGMAS.png",
+        description:
+            "Mengorganisir dan melaksanakan kegiatan pengabdian kepada masyarakat di lingkungan dalam dan luar Poliwangi.",
         coordinator: {
             name: "Dino Febiyan",
             image: "/people/pengmas/pengmas-kor-dino-idcard.webp",
         },
+        biro: [
+            {
+                name: "Sosial dan Kemanusiaan",
+                tugas: "Mengelola dan menyalurkan bantuan sosial kepada mahasiswa jurusan bisnis dan informatika serta masyarakat sekitar kampus yang membutuhkan.",
+                members: [],
+            },
+            {
+                name: "Pemberdayaan Masyarakat",
+                tugas: "Memberdayakan masyarakat luar kampus melalui sosialisasi, pelatihan, dan edukasi.",
+                members: [],
+            },
+            {
+                name: "Kebendaharaan",
+                tugas: "Meninjau, mengelola, dan mengawasi seluruh aspek keuangan pada program kerja untuk disalurkan kepada biro program yang bersangkutan.",
+                members: [],
+            },
+        ],
         members: [
             {
                 name: "Dino Febiyan",
@@ -254,12 +313,31 @@ export const dataDivisions: Division[] = [
     },
     {
         name: "PSDM",
+        slug: "psdm",
         imageUrl: "/logo-departemen/PSDM.png",
-        description: "Bidang yang bertanggung jawab dalam pengembangan sumber daya manusia HMJBI.",
+        description:
+            "Meningkatkan kualitas SDM mahasiswa melalui kaderisasi, kedisiplinan, serta informasi lomba dan pelatihan.",
         coordinator: {
             name: "Dico Maulana Akbar",
             image: "/people/psdm/psdm-kor-dico-idcard.webp",
         },
+        biro: [
+            {
+                name: "Kaderisasi",
+                tugas: "Melaksanakan kegiatan kaderisasi tingkat jurusan, PKJ, pembinaan mahasiswa baru, dan peningkatan kapasitas kepemimpinan calon pengurus.",
+                members: [],
+            },
+            {
+                name: "Kepengurusan",
+                tugas: "Memastikan aturan dan tata tertib sesuai kebutuhan organisasi, mengawasi kepanitiaan, dan menjaga kedisiplinan pengurus HMJBI.",
+                members: [],
+            },
+            {
+                name: "Relasi dan Pemberdayaan Mahasiswa",
+                tugas: "Mengoptimalkan potensi mahasiswa melalui pendataan dan informasi perlombaan, menjadi wadah aspirasi, serta mengadakan gathering dan pemberdayaan.",
+                members: [],
+            },
+        ],
         members: [
             {
                 name: "Dico Maulana Akbar",
@@ -272,13 +350,13 @@ export const dataDivisions: Division[] = [
                 role: "Staff",
             },
             {
-                name: "Alya Puspa Wardani",
-                imageMember: "/people/psdm/psdm-staf-alya-idcard.webp",
+                name: "Moh. Syaifudin",
+                imageMember: "/people/psdm/psdm-staf-syaif-idcard.webp",
                 role: "Staff",
             },
             {
-                name: "Moh. Syaifudin",
-                imageMember: "/people/psdm/psdm-staf-syaif-idcard.webp",
+                name: "Alya Puspa Wardani",
+                imageMember: "/people/psdm/psdm-staf-alya-idcard.webp",
                 role: "Staff",
             },
             {
@@ -315,11 +393,26 @@ export const dataDivisions: Division[] = [
     },
     {
         name: "KWU",
+        slug: "kwu",
         imageUrl: "/logo-departemen/KWU.png",
+        description:
+            "Mengelola KOKI (Kantin Operasional Kreatif Informatika) dan mengembangkan jiwa kewirausahaan mahasiswa JBI.",
         coordinator: {
             name: "Ressy Novia Arthaniza",
             image: "/people/kwu/kwu-kor-ressy-idcard.webp",
         },
+        biro: [
+            {
+                name: "Pengembangan Usaha",
+                tugas: "Mengembangkan ide kreatif, inovasi produk, serta strategi pemasaran guna menunjang skill berwirausaha anggota dan pengurus HMJBI.",
+                members: [],
+            },
+            {
+                name: "Dana Usaha",
+                tugas: "Melakukan kegiatan wirausaha untuk memenuhi kebutuhan operasional HMJBI POLIWANGI.",
+                members: [],
+            },
+        ],
         members: [
             {
                 name: "Ressy Novia Arthaniza",
@@ -333,7 +426,7 @@ export const dataDivisions: Division[] = [
             },
             {
                 name: "M Lutfi Darmawan",
-                imageMember: "/people/kwu/kwu-staf-miwaa-idcard.webp",
+                imageMember: "https://picsum.photos/seed/lutfi-darmawan/400/400",
                 role: "Staff",
             },
             {
@@ -348,7 +441,7 @@ export const dataDivisions: Division[] = [
             },
             {
                 name: "Jiyadia Namira Putri",
-                imageMember: "/people/kwu/kwu-staf-ray-idcard.webp",
+                imageMember: "/people/kwu/kwu-staf-miwaa-idcard.webp",
                 role: "Staff",
             },
             {
@@ -368,7 +461,7 @@ export const dataDivisions: Division[] = [
             },
             {
                 name: "Aulia Rahmawan",
-                imageMember: "",
+                imageMember: "/people/kwu/kwu-staf-ray-idcard.webp",
                 role: "Staff",
             },
             {
@@ -380,7 +473,10 @@ export const dataDivisions: Division[] = [
     },
     {
         name: "MEDKOM",
+        slug: "medkom",
         imageUrl: "/logo-departemen/MEDKOMINFO.png",
+        description:
+            "Mendukung pengurus harian di bidang multimedia dan menampung minat bakat mahasiswa di bidang desain, konten, dan dokumentasi.",
         coordinator: {
             name: "Dida Hanum Pradipta",
             image: "/people/medkom/medkom-staff-adid-idcard.webp",
@@ -403,7 +499,7 @@ export const dataDivisions: Division[] = [
             },
             {
                 name: "Ahmad Syaihu Nabiel",
-                imageMember: "/people/medkom/medkom-staff-blue-s-idcard.webp",
+                imageMember: "/people/medkom/medkom-staf-blue-s-idcard.webp",
                 role: "Staff",
             },
             {
@@ -430,6 +526,28 @@ export const dataDivisions: Division[] = [
                 name: "Antoni Silha Indriyan Priyadi",
                 imageMember: "/people/medkom/medkom-staf-antoni-idcard.webp",
                 role: "Staff",
+            },
+        ],
+        biro: [
+            {
+                name: "Graphic Designer",
+                tugas: "Membuat kebutuhan desain berupa konten dan thumbnail informasi kegiatan jurusan di seluruh media sosial.",
+                members: [],
+            },
+            {
+                name: "Illustrator",
+                tugas: "Membuat desain untuk hari-hari besar nasional dan konten lainnya yang disajikan berupa visual ilustrasi.",
+                members: [],
+            },
+            {
+                name: "Content Planner",
+                tugas: "Membuat ide kreatif dan daftar konten mingguan, kontrol kualitas, serta membuat caption untuk seluruh media sosial HMJBI.",
+                members: [],
+            },
+            {
+                name: "Dokumentasi",
+                tugas: "Fotografi bertugas mengabadikan momen kegiatan jurusan, videografi bertugas mengabadikan momen dan membuat konsep video untuk konten media sosial HMJBI.",
+                members: [],
             },
         ],
     },

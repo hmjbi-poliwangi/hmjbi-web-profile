@@ -1,12 +1,37 @@
-// file: components/SearchBar.tsx
-"use client"; // Wajib ditambahkan jika menggunakan interaksi (onChange)
+"use client";
+
+import { useState, useRef, useEffect } from "react";
+
+type StatusFilter = "Semua" | "Sedang Berlangsung" | "Akan Datang" | "Selesai";
 
 interface SearchBarProps {
     searchQuery: string;
     setSearchQuery: (query: string) => void;
+    filterStatus: StatusFilter;
+    setFilterStatus: (status: StatusFilter) => void;
 }
 
-export default function SearchBar({ searchQuery, setSearchQuery }: SearchBarProps) {
+const statusOptions: StatusFilter[] = ["Semua", "Sedang Berlangsung", "Akan Datang", "Selesai"];
+
+export default function SearchBar({
+    searchQuery,
+    setSearchQuery,
+    filterStatus,
+    setFilterStatus,
+}: SearchBarProps) {
+    const [open, setOpen] = useState(false);
+    const dropdownRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handleClickOutside = (e: MouseEvent) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+                setOpen(false);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
+
     return (
         <div className="flex flex-col gap-4 mt-10 md:flex-row md:items-center">
             {/* Input Search */}
@@ -37,10 +62,40 @@ export default function SearchBar({ searchQuery, setSearchQuery }: SearchBarProp
                 />
             </div>
 
-            {/* Tombol Filter */}
-            <button className="px-10 py-3 text-sm font-semibold text-yellow-400 transition-colors bg-transparent border border-yellow-400 rounded-full hover:bg-yellow-400/10 md:w-auto w-full">
-                Filter
-            </button>
+            {/* Tombol Filter + Dropdown */}
+            <div className="relative md:w-auto w-full" ref={dropdownRef}>
+                <button
+                    onClick={() => setOpen(!open)}
+                    className={`w-full md:w-auto px-10 py-3 text-sm font-semibold transition-all duration-200 rounded-full border ${
+                        filterStatus !== "Semua"
+                            ? "bg-yellow-400 text-black border-yellow-400"
+                            : "text-yellow-400 bg-transparent border-yellow-400 hover:bg-yellow-400 hover:text-black"
+                    }`}
+                >
+                    {filterStatus !== "Semua" ? filterStatus : "Filter"}
+                </button>
+
+                {open && (
+                    <div className="absolute right-0 z-30 w-56 mt-2 overflow-hidden border rounded-xl border-zinc-700 bg-zinc-900 shadow-xl shadow-black/40">
+                        {statusOptions.map((option) => (
+                            <button
+                                key={option}
+                                onClick={() => {
+                                    setFilterStatus(option);
+                                    setOpen(false);
+                                }}
+                                className={`w-full px-4 py-3 text-sm text-left transition-colors ${
+                                    filterStatus === option
+                                        ? "bg-yellow-400/15 text-yellow-400 font-semibold"
+                                        : "text-gray-300 hover:bg-zinc-800 hover:text-white"
+                                }`}
+                            >
+                                {option}
+                            </button>
+                        ))}
+                    </div>
+                )}
+            </div>
         </div>
     );
 }

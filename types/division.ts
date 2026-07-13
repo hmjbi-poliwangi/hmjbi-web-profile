@@ -5,6 +5,7 @@ export interface DivisionList {
 
 export interface Division {
     name: string;
+    slug?: string;
     imageUrl?: string;
     role?: string;
     coordinator?: {
@@ -19,6 +20,7 @@ export interface Division {
     }[];
     biro?: {
         name: string;
+        tugas: string;
         members: {
             name: string;
             imageMember: string;

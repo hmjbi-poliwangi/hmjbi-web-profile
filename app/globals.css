@@ -195,3 +195,11 @@ h6 {
   opacity: 0.4;
   cursor: not-allowed;
 }
+
+/* ========================
+    TEXT SELECTION (GLOBAL)
+======================== */
+*::selection {
+    background-color: #FFD700 !important;
+    color: #000000 !important;
+}
