@@ -130,24 +130,24 @@ const CalenderSection = ({ dataKegiatan }: { dataKegiatan: Event[] }) => {
     }));
 
     return (
-        <div className="max-w-6xl p-4 mx-auto md:p-8 font-sans bg-[#1a1a1a] border border-zinc-700 shadow-2xl rounded-4xl md:rounded-[3rem]">
+        <div className="max-w-6xl p-3 mx-auto md:p-8 font-sans bg-[#1a1a1a] border border-zinc-700 shadow-2xl rounded-2xl md:rounded-[3rem]">
             {/* HEADER */}
-            <div className="flex flex-col items-center justify-between gap-4 px-2 mb-8 md:flex-row">
+            <div className="flex flex-col items-center justify-between gap-2 px-2 mb-4 md:mb-8 md:flex-row">
                 <div className="flex items-center gap-2">
-                    <h2 className="mb-10 text-3xl font-bold text-center text-white md:text-4xl">
+                    <h2 className="mb-0 md:mb-10 text-xl md:text-4xl font-bold text-center text-white">
                         Kalender <span className="text-[#FFD700]">HMJBI</span>
                     </h2>
                 </div>
 
-                <div className="flex items-center gap-3 p-2 border border-zinc-600 bg-zinc-800 rounded-2xl">
+                <div className="flex items-center gap-2 p-1.5 border border-zinc-600 bg-zinc-800 rounded-xl md:rounded-2xl">
                     <button
                         onClick={prevMonth}
-                        className="p-2 text-xl font-black text-zinc-400 transition-colors hover:text-yellow-400"
+                        className="p-1.5 text-lg font-black text-zinc-400 transition-colors hover:text-yellow-400"
                     >
                         {"<"}
                     </button>
 
-                    <div className="flex gap-1.5">
+                    <div className="flex gap-1">
                         <CustomDropdown
                             value={String(currentMonth.getMonth())}
                             options={monthOptions}
@@ -162,26 +162,26 @@ const CalenderSection = ({ dataKegiatan }: { dataKegiatan: Event[] }) => {
 
                     <button
                         onClick={nextMonth}
-                        className="p-2 text-xl font-black text-zinc-400 transition-colors hover:text-yellow-400"
+                        className="p-1.5 text-lg font-black text-zinc-400 transition-colors hover:text-yellow-400"
                     >
                         {">"}
                     </button>
                 </div>
             </div>
-            <div className="flex items-center justify-center gap-6 mb-6 text-xs text-gray-400">
-                <div className="flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-blue-500" />
+            <div className="flex items-center justify-center gap-4 mb-3 text-[10px] md:text-xs text-gray-400">
+                <div className="flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
                     <span>Pendaftaran Dibuka</span>
                 </div>
-                <div className="flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-yellow-500" />
+                <div className="flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-yellow-500" />
                     <span>Pelaksanaan</span>
                 </div>
             </div>
-            <div className="grid items-stretch grid-cols-1 gap-8 lg:grid-cols-2">
+            <div className="grid items-stretch grid-cols-1 gap-4 md:gap-8 lg:grid-cols-2">
                 {/* KIRI: Card Detail Event */}
-                <div className="relative flex flex-col bg-zinc-900 rounded-[2.5rem] border-[3px] border-yellow-400 overflow-hidden shadow-xl min-h-112.5">
-                    <div className="relative h-56 overflow-hidden bg-zinc-800">
+                <div className="relative flex flex-col bg-zinc-900 rounded-2xl md:rounded-[2.5rem] border-2 md:border-[3px] border-yellow-400 overflow-hidden shadow-xl min-h-0 md:min-h-112.5">
+                    <div className="relative h-32 md:h-56 overflow-hidden bg-zinc-800">
                         {activeEvent?.image ? (
                             <Image
                                 key={activeEvent.image}
@@ -197,35 +197,35 @@ const CalenderSection = ({ dataKegiatan }: { dataKegiatan: Event[] }) => {
                         )}
                     </div>
 
-                    <div className="flex flex-col justify-center flex-1 p-8 text-white">
+                    <div className="flex flex-col justify-center flex-1 p-4 md:p-8 text-white">
                         {activeEvent ? (
                             <div
                                 key={toDateString(selectedDate)}
                                 className="duration-500 animate-in fade-in slide-in-from-bottom-4"
                             >
-                                <h3 className="mb-2 text-3xl italic font-black leading-tight tracking-tight uppercase">
+                                <h3 className="mb-1 text-lg md:text-3xl italic font-black leading-tight tracking-tight uppercase">
                                     {activeEvent.title.split(" ")[0]}{" "}
                                     <span className="text-yellow-400">
                                         {activeEvent.title.split(" ").slice(1).join(" ")}
                                     </span>
                                 </h3>
-                                <p className="mb-4 text-xs font-semibold text-yellow-400/80">
+                                <p className="mb-2 text-[10px] md:text-xs font-semibold text-yellow-400/80">
                                     {format(new Date(activeEvent.date), "dd MMMM yyyy", {
                                         locale: id,
                                     })}
                                 </p>
-                                <p className="max-w-md mb-8 text-sm italic leading-relaxed text-gray-400">
+                                <p className="max-w-md mb-4 md:mb-8 text-xs md:text-sm italic leading-relaxed text-gray-400 line-clamp-3 md:line-clamp-none">
                                     {activeEvent.description}
                                 </p>
                                 <a href={`/activities/detail-proker/${activeEvent.id}`}>
-                                    <button className="px-10 py-3 text-xs font-black tracking-widest text-black uppercase transition-all transform bg-yellow-400 rounded-full hover:bg-yellow-500 hover:scale-105">
+                                    <button className="px-6 py-2 md:px-10 md:py-3 text-[10px] md:text-xs font-black tracking-widest text-black uppercase transition-all transform bg-yellow-400 rounded-full hover:bg-yellow-500 hover:scale-105">
                                         DETAIL INFO
                                     </button>
                                 </a>
                             </div>
                         ) : (
-                            <div className="flex flex-col items-center justify-center h-full opacity-50">
-                                <p className="italic text-center text-gray-400">
+                            <div className="flex flex-col items-center justify-center h-full opacity-50 py-4">
+                                <p className="text-xs italic text-center text-gray-400 md:text-sm">
                                     Tidak ada kegiatan pada
                                     <br />
                                     <span className="not-italic font-bold text-white">
@@ -239,18 +239,18 @@ const CalenderSection = ({ dataKegiatan }: { dataKegiatan: Event[] }) => {
 
                 {/* KANAN: Grid Kalender */}
                 <div className="flex flex-col justify-center">
-                    <div className="grid grid-cols-7 pb-4 mb-6 border-b border-zinc-700">
+                    <div className="grid grid-cols-7 pb-2 mb-3 md:pb-4 md:mb-6 border-b border-zinc-700">
                         {dayNames.map((day) => (
                             <div
                                 key={day}
-                                className="text-[10px] md:text-xs font-black text-center text-zinc-500 uppercase"
+                                className="text-[8px] md:text-xs font-black text-center text-zinc-500 uppercase"
                             >
                                 {day}
                             </div>
                         ))}
                     </div>
 
-                    <div className="grid grid-cols-7 gap-y-4 md:gap-y-6">
+                    <div className="grid grid-cols-7 gap-y-2 md:gap-y-6">
                         {calendarDays.map((day, idx) => {
                             const dateStr = toDateString(day);
                             const selectedStr = toDateString(selectedDate);
@@ -280,18 +280,18 @@ const CalenderSection = ({ dataKegiatan }: { dataKegiatan: Event[] }) => {
                                     <button
                                         onClick={() => setSelectedDate(day)}
                                         className={`
-                                            w-10 h-10 md:w-14 md:h-14 flex flex-col items-center justify-center rounded-full transition-all relative
+                                            w-8 h-8 md:w-14 md:h-14 flex flex-col items-center justify-center rounded-full transition-all relative
                                             ${!isCurrentMonth ? "text-zinc-700" : "text-zinc-300 font-bold"}
-                                            ${isSelected ? "ring-2 ring-yellow-400 ring-offset-2 ring-offset-[#1a1a1a] scale-110 shadow-lg bg-zinc-700 z-10" : "hover:bg-zinc-800"}
+                                            ${isSelected ? "ring-1 md:ring-2 ring-yellow-400 ring-offset-1 md:ring-offset-2 ring-offset-[#1a1a1a] scale-110 shadow-lg bg-zinc-700 z-10" : "hover:bg-zinc-800"}
                                         `}
                                     >
-                                        <span className="text-sm md:text-lg">
+                                        <span className="text-xs md:text-lg">
                                             {format(day, "dd")}
                                         </span>
 
                                         {hasEvent && isCurrentMonth && (
                                             <span
-                                                className={`absolute bottom-2 w-2 h-2 rounded-full z-20 ${
+                                                className={`absolute bottom-0.5 md:bottom-2 w-1.5 h-1.5 md:w-2 md:h-2 rounded-full z-20 ${
                                                     isRegDot
                                                         ? isSelected
                                                             ? "bg-blue-400"

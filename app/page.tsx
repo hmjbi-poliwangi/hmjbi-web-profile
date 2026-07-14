@@ -128,10 +128,10 @@ export default function Home() {
                     <h2 className="mb-10 text-3xl font-bold text-center text-white md:text-4xl">
                         Divisi <span className="text-[#FFD700]">HMJBI</span>
                     </h2>
-                    <div className="relative px-8 md:px-10">
+                    <div className="relative px-6 md:px-14">
                         <Swiper
-                            slidesPerView={2}
-                            spaceBetween={16}
+                            slidesPerView={1.5}
+                            spaceBetween={12}
                             freeMode={true}
                             pagination={{ clickable: true }}
                             navigation={{
@@ -146,8 +146,8 @@ export default function Home() {
                             modules={[FreeMode, Pagination, Navigation, Autoplay]}
                             breakpoints={{
                                 640: {
-                                    slidesPerView: 3,
-                                    spaceBetween: 20,
+                                    slidesPerView: 2.5,
+                                    spaceBetween: 16,
                                 },
                                 1024: {
                                     slidesPerView: 3,
@@ -167,9 +167,9 @@ export default function Home() {
                             ))}
                         </Swiper>
 
-                        <button className="swiper-prev absolute -left-4 top-1/2 -translate-y-1/2 z-10 w-14 h-14 md:w-16 md:h-16 flex items-center justify-center bg-[#FFD700] text-black rounded-full shadow-2xl hover:bg-yellow-500 hover:scale-110 transition-all">
+                        <button className="swiper-prev absolute -left-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 md:w-14 md:h-14 flex items-center justify-center bg-[#FFD700] text-black rounded-full shadow-2xl hover:bg-yellow-500 hover:scale-110 transition-all">
                             <svg
-                                className="w-7 h-7 md:w-8 md:h-8"
+                                className="w-4 h-4 md:w-6 md:h-6"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
@@ -182,9 +182,9 @@ export default function Home() {
                                 />
                             </svg>
                         </button>
-                        <button className="swiper-next absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-14 h-14 md:w-16 md:h-16 flex items-center justify-center bg-[#FFD700] text-black rounded-full shadow-2xl hover:bg-yellow-500 hover:scale-110 transition-all">
+                        <button className="swiper-next absolute -right-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 md:w-14 md:h-14 flex items-center justify-center bg-[#FFD700] text-black rounded-full shadow-2xl hover:bg-yellow-500 hover:scale-110 transition-all">
                             <svg
-                                className="w-7 h-7 md:w-8 md:h-8"
+                                className="w-4 h-4 md:w-6 md:h-6"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
@@ -207,8 +207,8 @@ export default function Home() {
                     <h2 className="mb-10 text-3xl font-bold text-center text-white md:text-4xl">
                         Proker <span className="text-[#FFD700]">HMJBI</span>
                     </h2>
-                    <div className="grid justify-center grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 align-items-center">
-                        {dataProker.slice(0, 3).map((proker) => (
+                    <div className="grid justify-center grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4 align-items-center">
+                        {dataProker.slice(0, 4).map((proker) => (
                             <Link key={proker.id} href={`/activities/detail-proker/${proker.id}`}>
                                 <ProkerCard proker={proker} />
                             </Link>

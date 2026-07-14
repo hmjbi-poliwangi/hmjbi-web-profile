@@ -6,6 +6,6 @@ export interface Event {
     description: string;
     image?: string;
     location?: string;
-    status: "COMING SOON" | "IN PROGRESS" | "CANCLE" | "FINISHED";
+    status: "COMING SOON" | "IN PROGRESS" | "CANCELLED" | "FINISHED";
     registrationDate?: Date;
 }

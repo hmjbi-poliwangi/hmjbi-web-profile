@@ -4,7 +4,7 @@ export const dataDivisions: Division[] = [
     {
         name: "Ketua & Wakil",
         slug: "ketua-wakil",
-        imageUrl: "/logo-departemen/PH.png",
+        imageUrl: "/departement/ph.webp",
         description:
             "Memimpin dan mengkoordinasikan seluruh kegiatan organisasi, mengawasi jalannya program kerja, serta menjadi representasi HMJBI di internal dan eksternal.",
         members: [
@@ -23,7 +23,7 @@ export const dataDivisions: Division[] = [
     {
         name: "Sekretaris",
         slug: "sekretaris",
-        imageUrl: "/logo-departemen/PH.png",
+        imageUrl: "/departement/ph.webp",
         description:
             "Bertanggung jawab terhadap administrasi kegiatan HMJBI, pengelolaan dokumen, notulensi rapat, dan surat-menyurat organisasi.",
         coordinator: {
@@ -51,7 +51,7 @@ export const dataDivisions: Division[] = [
     {
         name: "Bendahara",
         slug: "bendahara",
-        imageUrl: "/logo-departemen/PH.png",
+        imageUrl: "/departement/ph.webp",
         description:
             "Bertanggung jawab terhadap pengelolaan keuangan HMJBI, penyusunan RAPB, dan pelaporan keuangan secara rutin.",
         coordinator: {
@@ -74,7 +74,7 @@ export const dataDivisions: Division[] = [
     {
         name: "HUMAS",
         slug: "humas",
-        imageUrl: "/logo-departemen/HUMAS.png",
+        imageUrl: "/departement/humas.webp",
         description:
             "Menjalin komunikasi dan relasi internal maupun eksternal, serta mewadahi aspirasi mahasiswa Jurusan Bisnis dan Informatika.",
         coordinator: {
@@ -149,7 +149,7 @@ export const dataDivisions: Division[] = [
     {
         name: "RISTEK",
         slug: "ristek",
-        imageUrl: "/logo-departemen/RISTEK.png",
+        imageUrl: "/departement/ristek.webp",
         description:
             "Menganalisa permasalahan dan potensi internal HMJBI, serta memberikan solusi teknologi melalui riset dan pengembangan perangkat lunak maupun keras.",
         coordinator: {
@@ -229,7 +229,7 @@ export const dataDivisions: Division[] = [
     {
         name: "PENGMAS",
         slug: "pengmas",
-        imageUrl: "/logo-departemen/PENGMAS.png",
+        imageUrl: "/departement/pengmas.webp",
         description:
             "Mengorganisir dan melaksanakan kegiatan pengabdian kepada masyarakat di lingkungan dalam dan luar Poliwangi.",
         coordinator: {
@@ -314,7 +314,7 @@ export const dataDivisions: Division[] = [
     {
         name: "PSDM",
         slug: "psdm",
-        imageUrl: "/logo-departemen/PSDM.png",
+        imageUrl: "/departement/psdm.webp",
         description:
             "Meningkatkan kualitas SDM mahasiswa melalui kaderisasi, kedisiplinan, serta informasi lomba dan pelatihan.",
         coordinator: {
@@ -394,7 +394,7 @@ export const dataDivisions: Division[] = [
     {
         name: "KWU",
         slug: "kwu",
-        imageUrl: "/logo-departemen/KWU.png",
+        imageUrl: "/departement/kwu.webp",
         description:
             "Mengelola KOKI (Kantin Operasional Kreatif Informatika) dan mengembangkan jiwa kewirausahaan mahasiswa JBI.",
         coordinator: {
@@ -474,7 +474,7 @@ export const dataDivisions: Division[] = [
     {
         name: "MEDKOM",
         slug: "medkom",
-        imageUrl: "/logo-departemen/MEDKOMINFO.png",
+        imageUrl: "/departement/medkominfo.webp",
         description:
             "Mendukung pengurus harian di bidang multimedia dan menampung minat bakat mahasiswa di bidang desain, konten, dan dokumentasi.",
         coordinator: {

@@ -6,10 +6,28 @@ export default function AboutPreviewSection() {
     return (
         <Section className="bg-(--color-background) text-text-white">
             <Container>
-                <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10">
-                    {/* Konten Teks (Kiri) */}
-                    <div className="flex-1 space-y-6">
-                        <h2 className="text-3xl text-center md:text-4xl font-bold text-white">
+                <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-10">
+                    {/* Judul - mobile only */}
+                    <h2 className="md:hidden text-3xl font-bold text-white text-center">
+                        Tentang <span className="text-[#FFD700]">HMJBI</span>
+                    </h2>
+
+                    {/* Foto Fotbar */}
+                    <div className="w-full md:w-1/2 md:flex-shrink-0">
+                        <div className="relative w-full aspect-[4/3] bg-[#1a1a1a] rounded-3xl overflow-hidden border border-white/5 group">
+                            <Image
+                                src="/fotbar-hmjbi-24-25.jpeg"
+                                alt="Fotbar HMJBI 2024/2025"
+                                fill
+                                className="object-cover transition-transform duration-700 group-hover:scale-105 active:scale-105"
+                            />
+                            <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent"></div>
+                        </div>
+                    </div>
+
+                    {/* Teks + Deskripsi + Tombol */}
+                    <div className="flex-1 space-y-5 text-center md:text-left">
+                        <h2 className="hidden md:block text-4xl font-bold text-white">
                             Tentang <span className="text-[#FFD700]">HMJBI</span>
                         </h2>
 
@@ -20,23 +38,12 @@ export default function AboutPreviewSection() {
                             Politeknik Negeri Banyuwangi.
                         </p>
 
-                        <a href="/about">
-                            <button className="px-10 py-3 text-xs font-black tracking-widest text-black uppercase transition-all transform bg-yellow-400 rounded-full hover:bg-yellow-500 hover:scale-105">
-                                Selengkapnya
-                            </button>
-                        </a>
-                    </div>
-
-                    {/* Foto Fotbar (Kanan) */}
-                    <div className="flex-1 w-full h-62.5 md:h-87.5">
-                        <div className="w-full h-full bg-[#1a1a1a] rounded-3xl overflow-hidden border border-white/5 relative group">
-                            <Image
-                                src="/fotbar-hmjbi-24-25.jpeg"
-                                alt="Fotbar HMJBI 2024/2025"
-                                fill
-                                className="object-cover transition-transform duration-700 group-hover:scale-105"
-                            />
-                            <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent"></div>
+                        <div className="flex md:block justify-center">
+                            <a href="/about">
+                                <button className="px-10 py-3 text-xs font-black tracking-widest text-black uppercase transition-all transform bg-yellow-400 rounded-full hover:bg-yellow-500 hover:scale-105 active:bg-yellow-500 active:scale-105">
+                                    Selengkapnya
+                                </button>
+                            </a>
                         </div>
                     </div>
                 </div>

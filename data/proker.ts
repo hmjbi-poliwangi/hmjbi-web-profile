@@ -33,6 +33,7 @@ export interface ProkerItem {
     tempat: string;
     tanggal: string;
     image?: string;
+    status?: string;
     phases: ProkerPhase[];
     schedule?: DailySchedule[];
     registration?: Registration;
@@ -114,6 +115,7 @@ export const dataProker: ProkerItem[] = [
         tempat: "Desa Kemiren, Kec. Glagah, Banyuwangi",
         tanggal: "12-14 April 2026",
         image: "https://picsum.photos/seed/sosial/400/300",
+        status: "IN PROGRESS",
         phases: [
             { name: "Persiapan", startMonth: 2, endMonth: 3 },
             { name: "Pelaksanaan", startMonth: 4, endMonth: 4 },
@@ -274,6 +276,7 @@ export const dataProker: ProkerItem[] = [
         tempat: "Ruang Seminar Lt. 3 Gedung Pusat Poliwangi",
         tanggal: "10-12 Juli 2026",
         image: "https://picsum.photos/seed/aistarter/400/300",
+        status: "CANCELLED",
         phases: [
             { name: "Persiapan", startMonth: 5, endMonth: 6 },
             { name: "Pelaksanaan", startMonth: 7, endMonth: 7 },

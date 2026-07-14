@@ -71,7 +71,9 @@ export default function ProkerPage() {
                         Masa Bakti <span className="text-[#FFD700]">2025/2026</span>
                     </h2>
                     <p className="text-sm text-gray-400 mb-6">Februari - Desember 2026</p>
-                    <div className="flex gap-2 overflow-x-auto pb-2">
+
+                    {/* Desktop: horizontal scroll */}
+                    <div className="hidden md:flex gap-2 overflow-x-auto pb-2">
                         {MONTH_LABELS.map(({ month, label }) => {
                             const prokersInMonth = dataProker.filter((p) =>
                                 p.phases.some(
@@ -103,6 +105,39 @@ export default function ProkerPage() {
                                         ) : (
                                             <div className="w-full h-6 bg-zinc-800/50 rounded-lg" />
                                         )}
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+
+                    {/* Mobile: grid 2 kolom */}
+                    <div className="md:hidden grid grid-cols-2 gap-3">
+                        {MONTH_LABELS.map(({ month, label }) => {
+                            const prokersInMonth = dataProker.filter((p) =>
+                                p.phases.some(
+                                    (ph) =>
+                                        ph.name === "Pelaksanaan" &&
+                                        month >= ph.startMonth &&
+                                        month <= ph.endMonth
+                                )
+                            );
+                            if (prokersInMonth.length === 0) return null;
+                            return (
+                                <div key={month}>
+                                    <span className="text-xs font-bold text-gray-400 mb-1 block">
+                                        {label}
+                                    </span>
+                                    <div className="flex flex-col gap-1">
+                                        {prokersInMonth.map((p) => (
+                                            <Link
+                                                key={p.id}
+                                                href={`/activities/detail-proker/${p.id}`}
+                                                className="px-2 py-1.5 bg-yellow-400/10 border border-yellow-400/20 rounded-lg text-[10px] font-semibold text-yellow-400 hover:bg-yellow-400/20 transition-colors truncate"
+                                            >
+                                                {p.name}
+                                            </Link>
+                                        ))}
                                     </div>
                                 </div>
                             );

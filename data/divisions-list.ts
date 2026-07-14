@@ -3,30 +3,30 @@ import { DivisionList } from "@/types/division";
 export const dataDivisions: DivisionList[] = [
     {
         name: "PH",
-        imageUrl: "/logo-departemen/PH.png",
+        imageUrl: "/departement/ph.webp",
     },
     {
         name: "PSDM",
-        imageUrl: "/logo-departemen/PSDM.png",
+        imageUrl: "/departement/psdm.webp",
     },
     {
         name: "MEDKOM",
-        imageUrl: "/logo-departemen/MEDKOMINFO.png",
+        imageUrl: "/departement/medkominfo.webp",
     },
     {
         name: "KWU",
-        imageUrl: "/logo-departemen/KWU.png",
+        imageUrl: "/departement/kwu.webp",
     },
     {
         name: "HUMAS",
-        imageUrl: "/logo-departemen/HUMAS.png",
+        imageUrl: "/departement/humas.webp",
     },
     {
         name: "PENGMAS",
-        imageUrl: "/logo-departemen/PENGMAS.png",
+        imageUrl: "/departement/pengmas.webp",
     },
     {
         name: "RISTEK",
-        imageUrl: "/logo-departemen/RISTEK.png",
+        imageUrl: "/departement/ristek.webp",
     },
 ];

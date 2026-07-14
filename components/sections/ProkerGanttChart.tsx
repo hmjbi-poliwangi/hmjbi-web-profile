@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useRef, useEffect } from "react";
 import { dataProker } from "@/data/proker";
 
 const months = [
@@ -37,6 +38,19 @@ const phaseConfig: Record<string, { label: string; bg: string; text: string; dot
 };
 
 export default function ProkerGanttChart() {
+    const scrollRef = useRef<HTMLDivElement>(null);
+    const [showHint, setShowHint] = useState(true);
+
+    useEffect(() => {
+        const el = scrollRef.current;
+        if (!el) return;
+        const onScroll = () => {
+            setShowHint(el.scrollLeft < el.scrollWidth - el.clientWidth - 10);
+        };
+        el.addEventListener("scroll", onScroll);
+        return () => el.removeEventListener("scroll", onScroll);
+    }, []);
+
     return (
         <div className="bg-zinc-900/50 border border-zinc-800 rounded-2xl overflow-hidden">
             <div className="p-5 border-b border-zinc-800">
@@ -48,17 +62,18 @@ export default function ProkerGanttChart() {
                 </p>
             </div>
 
-            <div className="overflow-x-auto">
-                <div className="min-w-[800px]">
+            <div className="relative">
+                <div ref={scrollRef} className="overflow-x-auto">
+                    <div className="min-w-[700px] md:min-w-0">
                     {/* Header */}
                     <div className="flex border-b border-zinc-800">
-                        <div className="w-36 shrink-0 p-3 text-sm font-semibold text-white border-r border-zinc-800">
+                        <div className="w-24 md:w-36 shrink-0 p-2 md:p-3 text-xs md:text-sm font-semibold text-white border-r border-zinc-800 sticky left-0 bg-zinc-900 z-10">
                             Kegiatan
                         </div>
                         {months.map((m) => (
                             <div
                                 key={m.num}
-                                className="flex-1 p-2 text-center text-xs font-semibold text-gray-400 border-r border-zinc-800 last:border-r-0"
+                                className="flex-1 p-1.5 md:p-2 text-center text-[10px] md:text-xs font-semibold text-gray-400 border-r border-zinc-800 last:border-r-0"
                             >
                                 {m.label}
                             </div>
@@ -73,7 +88,7 @@ export default function ProkerGanttChart() {
                                 ri % 2 === 0 ? "bg-zinc-900/30" : ""
                             }`}
                         >
-                            <div className="w-36 shrink-0 p-3 text-sm font-semibold text-white border-r border-zinc-800 flex items-center">
+                            <div className={`w-24 md:w-36 shrink-0 p-2 md:p-3 text-xs md:text-sm font-semibold text-white border-r border-zinc-800 flex items-center sticky left-0 z-10 ${ri % 2 === 0 ? "bg-zinc-900" : "bg-[#111111]"}`}>
                                 {proker.name}
                             </div>
                             <div className="flex flex-1">
@@ -84,11 +99,11 @@ export default function ProkerGanttChart() {
                                     return (
                                         <div
                                             key={m.num}
-                                            className="flex-1 h-12 border-r border-zinc-800 last:border-r-0 relative"
+                                            className="flex-1 h-10 md:h-12 border-r border-zinc-800 last:border-r-0 relative"
                                         >
                                             {phase && (
                                                 <div
-                                                    className={`absolute inset-x-1 top-1/2 -translate-y-1/2 h-7 rounded-lg flex items-center justify-center text-[10px] sm:text-xs font-bold ${phaseConfig[phase.name]?.bg} ${phaseConfig[phase.name]?.text} transition-all hover:scale-105 hover:shadow-lg cursor-default`}
+                                                    className={`absolute inset-x-0.5 md:inset-x-1 top-1/2 -translate-y-1/2 h-5 md:h-7 rounded-lg flex items-center justify-center text-[8px] md:text-xs font-bold ${phaseConfig[phase.name]?.bg} ${phaseConfig[phase.name]?.text} transition-all hover:scale-105 hover:shadow-lg cursor-default`}
                                                     title={`${phase.name}`}
                                                 >
                                                     <span className="hidden sm:inline">
@@ -110,6 +125,15 @@ export default function ProkerGanttChart() {
                         </div>
                     ))}
                 </div>
+                </div>
+                {showHint && (
+                    <div className="absolute right-0 top-0 bottom-0 flex items-center pointer-events-none md:hidden">
+                        <div className="w-20 h-full bg-gradient-to-l from-zinc-900/50 to-transparent" />
+                        <div className="absolute right-3 text-xs text-gray-400 animate-pulse">
+                            Geser →
+                        </div>
+                    </div>
+                )}
             </div>
 
             {/* Legend */}

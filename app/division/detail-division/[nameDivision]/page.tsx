@@ -63,7 +63,7 @@ export default async function DetailDivisionPage({ params }: DetailDivisionProps
                                 </div>
                                 <div className="relative z-10 py-10 md:py-16">
                                     <div className="flex justify-center">
-                                        <div className="w-full max-w-72">
+                                        <div className="w-full max-w-52">
                                             <DivisionCard
                                                 variant="person"
                                                 featured
@@ -156,7 +156,7 @@ export default async function DetailDivisionPage({ params }: DetailDivisionProps
 
                                         <div className="relative z-10 py-10 md:py-16">
                                             <div className="flex justify-center">
-                                                <div className="w-full max-w-72">
+                                                <div className="w-full max-w-52">
                                                     <DivisionCard
                                                         variant="person"
                                                         featured
@@ -183,7 +183,7 @@ export default async function DetailDivisionPage({ params }: DetailDivisionProps
                     <div className="mb-14 md:mb-10 pb-6 md:pb-0">
                         <div className="flex flex-wrap justify-center gap-8">
                             {divisionData.members.map((member, idx) => (
-                                <div key={idx} className="w-full max-w-72">
+                                <div key={idx} className="w-full max-w-52">
                                     <DivisionCard
                                         variant="person"
                                         featured
@@ -208,7 +208,7 @@ export default async function DetailDivisionPage({ params }: DetailDivisionProps
                         </h2>
 
                         {/* Members list (all screen sizes) */}
-                        <div className="flex flex-wrap justify-center gap-5 max-w-3xl mx-auto stagger-fade-in">
+                        <div className="flex flex-wrap justify-center gap-4 max-w-3xl mx-auto stagger-fade-in">
                             {divisionData.members.map((member, index) => {
                                 const memberName =
                                     member.name.trim() !== ""
@@ -218,7 +218,7 @@ export default async function DetailDivisionPage({ params }: DetailDivisionProps
                                     !isKetuaWakil && divisionData.coordinator?.name === member.name;
                                 if (isCoordinatorMember) return null;
                                 return (
-                                    <div key={index} className="w-60">
+                                    <div key={index} className="w-[calc(50%-8px)] sm:w-[calc(33.333%-11px)] md:w-[calc(25%-12px)]">
                                         <DivisionCard
                                             variant="person"
                                             dataDivision={{

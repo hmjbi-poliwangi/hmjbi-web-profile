@@ -11,14 +11,14 @@ export default function EventCard({ data }: { data: Event }) {
     };
 
     return (
-        <div className="flex flex-col overflow-hidden bg-black border border-yellow-400 rounded-2xl group cursor-pointer hover:shadow-[0_0_15px_rgba(255,215,0,0.3)] transition-all duration-300">
+        <div className="flex flex-col overflow-hidden bg-black border border-yellow-400 rounded-2xl group cursor-pointer hover:shadow-[0_0_15px_rgba(255,215,0,0.3)] active:shadow-[0_0_15px_rgba(255,215,0,0.3)] transition-all duration-300">
             {/* Bagian Atas: Gambar dan Badge */}
             <div className="relative w-full aspect-4/3 overflow-hidden">
                 <Image
                     src={data.image || "/test-images/images.jpg"}
                     alt={data.title}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105 active:scale-105"
                 />
 
                 {/* Tanggal (Kiri Atas) */}
@@ -34,7 +34,7 @@ export default function EventCard({ data }: { data: Event }) {
 
             {/* Bagian Bawah: Judul */}
             <div className="p-6 text-center bg-black">
-                <h3 className="text-xl font-bold text-white transition-colors group-hover:text-yellow-400">
+                <h3 className="text-xl font-bold text-white transition-colors group-hover:text-yellow-400 active:text-yellow-400">
                     {data.title}
                 </h3>
                 {/* Deskripsi (Opsional, di desain aslinya tidak terlihat, tapi ada di data. Bisa dimunculkan jika mau) */}
