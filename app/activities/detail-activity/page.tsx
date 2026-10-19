@@ -2,19 +2,14 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { notFound } from "next/navigation";
+import { notFound, useSearchParams } from "next/navigation";
 import { dataEvents } from "@/data/events";
 import Link from "next/link";
 
-interface DetailKegiatanProps {
-    params: Promise<{
-        id: string;
-    }>;
-}
-
-export default function DetailKegiatanPage({ params }: DetailKegiatanProps) {
-    const resolvedParams = React.use(params);
-    const eventId = parseInt(resolvedParams.id);
+export default function DetailKegiatanPage() {
+    const searchParams = useSearchParams();
+    const idParam = searchParams.get("id");
+    const eventId = idParam ? parseInt(idParam) : NaN;
 
     const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -58,7 +53,6 @@ export default function DetailKegiatanPage({ params }: DetailKegiatanProps) {
     return (
         <main className="min-h-screen bg-[#111111] py-16 px-6 font-sans">
             <section className="max-w-6xl mx-auto">
-                {/* --- HEADER JUDUL --- */}
                 <div className="mb-10 text-center">
                     <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
                         <span className="text-yellow-400">Judul Kegiatan : </span>
@@ -66,7 +60,6 @@ export default function DetailKegiatanPage({ params }: DetailKegiatanProps) {
                     </h1>
                 </div>
 
-                {/* --- GAMBAR UTAMA HERO --- */}
                 <div className="relative w-full max-w-4xl mx-auto overflow-hidden border-4 border-blue-400 rounded-2xl aspect-video md:aspect-21/9">
                     {currentEvent.image ? (
                         <Image
@@ -113,14 +106,12 @@ export default function DetailKegiatanPage({ params }: DetailKegiatanProps) {
                     </div>
                 </div>
 
-                {/* --- DESKRIPSI --- */}
                 <div className="max-w-4xl mx-auto mt-8 mb-16">
                     <p className="text-sm leading-relaxed text-justify text-gray-300 md:text-base">
                         {currentEvent.description}
                     </p>
                 </div>
 
-                {/* --- GALLERY / DOKUMENTASI INTERAKTIF --- */}
                 <div className="max-w-5xl mx-auto mt-16 mb-20">
                     <h2 className="mb-8 text-2xl font-bold text-white md:text-3xl">
                         Dokumentasi Event Lain
@@ -128,7 +119,6 @@ export default function DetailKegiatanPage({ params }: DetailKegiatanProps) {
 
                     {totalImages >= 3 ? (
                         <div className="flex items-center justify-center gap-4 md:gap-8">
-                            {/* Tombol Kiri */}
                             <button
                                 onClick={prevSlide}
                                 className="flex items-center justify-center w-10 h-10 transition-transform bg-yellow-400 rounded-full shrink-0 hover:scale-110 active:scale-95"
@@ -148,12 +138,10 @@ export default function DetailKegiatanPage({ params }: DetailKegiatanProps) {
                                 </svg>
                             </button>
 
-                            {/* Area Carousel */}
                             <div className="flex items-center justify-center w-full max-w-3xl gap-2 md:gap-4">
-                                {/* Gambar Kiri (Kecil) */}
                                 {leftItem && (
                                     <Link
-                                        href={`/activities/detail-activity/${leftItem.id}`}
+                                        href={`/activities/detail-activity?id=${leftItem.id}`}
                                         className="relative hidden w-1/4 overflow-hidden transition-all duration-500 rounded-xl bg-zinc-800 aspect-video md:block opacity-40 hover:opacity-100"
                                     >
                                         <Image
@@ -165,11 +153,9 @@ export default function DetailKegiatanPage({ params }: DetailKegiatanProps) {
                                     </Link>
                                 )}
 
-                                {/* Gambar Tengah (Besar & Fokus) */}
                                 {centerItem && (
                                     <Link
-                                        href={`/activities/detail-activity/${centerItem.id}`}
-                                        // Tambahan efek hover:scale-[1.02] agar membesar sedikit saat disentuh mouse
+                                        href={`/activities/detail-activity?id=${centerItem.id}`}
                                         className="relative block w-full md:w-1/2 aspect-4/3 rounded-2xl bg-zinc-800 overflow-hidden shadow-[0_0_30px_rgba(255,215,0,0.15)] z-10 border border-white/10 transition-all duration-500 hover:scale-[1.02] hover:border-yellow-400/50"
                                     >
                                         <Image
@@ -181,10 +167,9 @@ export default function DetailKegiatanPage({ params }: DetailKegiatanProps) {
                                     </Link>
                                 )}
 
-                                {/* Gambar Kanan (Kecil) */}
                                 {rightItem && (
                                     <Link
-                                        href={`/activities/detail-activity/${rightItem.id}`}
+                                        href={`/activities/detail-activity?id=${rightItem.id}`}
                                         className="relative hidden w-1/4 overflow-hidden transition-all duration-500 rounded-xl bg-zinc-800 aspect-video md:block opacity-40 hover:opacity-100"
                                     >
                                         <Image
@@ -197,7 +182,6 @@ export default function DetailKegiatanPage({ params }: DetailKegiatanProps) {
                                 )}
                             </div>
 
-                            {/* Tombol Kanan */}
                             <button
                                 onClick={nextSlide}
                                 className="flex items-center justify-center w-10 h-10 transition-transform bg-yellow-400 rounded-full shrink-0 hover:scale-110 active:scale-95"
@@ -218,7 +202,6 @@ export default function DetailKegiatanPage({ params }: DetailKegiatanProps) {
                             </button>
                         </div>
                     ) : (
-                        // Fallback jika gambar event lain kurang dari 3
                         <div className="py-10 text-center text-gray-500 border bg-white/5 rounded-xl border-white/10">
                             Belum ada cukup dokumentasi dari event lain untuk ditampilkan.
                         </div>

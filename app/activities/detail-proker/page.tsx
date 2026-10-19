@@ -1,7 +1,8 @@
 "use client";
 
-import { use, useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import {
     ArrowLeft,
     MapPin,
@@ -51,13 +52,12 @@ const phaseConfig: Record<string, { label: string; bg: string; text: string; dot
     },
 };
 
-interface Props {
-    params: Promise<{ id: string }>;
-}
+export default function DetailProkerPage() {
+    const searchParams = useSearchParams();
+    const idParam = searchParams.get("id");
+    const prokerId = idParam ? parseInt(idParam) : NaN;
 
-export default function DetailProkerPage({ params }: Props) {
-    const { id } = use(params);
-    const proker = dataProker.find((p) => p.id === Number(id));
+    const proker = dataProker.find((p) => p.id === prokerId);
     const indikator = dataIndikator.find((i) => i.prokerName === proker?.name);
     const timelineRef = useRef<HTMLDivElement>(null);
 
@@ -180,8 +180,8 @@ export default function DetailProkerPage({ params }: Props) {
                                                                         ? "P"
                                                                         : phaseName ===
                                                                             "Pelaksanaan"
-                                                                          ? "Lks"
-                                                                          : "Lpr"}
+                                                                        ? "Lks"
+                                                                        : "Lpr"}
                                                                 </span>
                                                             </div>
                                                         )}
