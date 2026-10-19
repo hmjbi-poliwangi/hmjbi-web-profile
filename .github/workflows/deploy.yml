@@ -1,60 +1,34 @@
-name: Deploy Next.js Node App to cPanel
+name: Deploy Website via FTP
 
 on:
   push:
     branches:
-      - main
+      - main # Jalankan otomatis saat push ke branch main
 
 jobs:
-  build-and-deploy:
+  web-deploy:
+    name: 🚀 Deploy via FTP
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout Repository
+    - name: 🚚 Get latest code
       uses: actions/checkout@v4
 
-    - name: Setup Node.js
+    - name: 🟢 Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version: '20'
-        cache: 'npm'
 
-    - name: Install Dependencies
+    - name: 📦 Install Dependencies
       run: npm ci
 
-    - name: Build Next.js Application
-      run: npm run build
+    - name: 🏗️ Build & Export Next.js
+      run: npm run build # Hasil compile otomatis masuk ke folder /out
 
-    - name: Prepare Deployment Package
-      run: |
-        mkdir -p deploy-dist
-
-        cp -r .next/standalone/* deploy-dist/
-
-        cp -r public deploy-dist/ || true
-
-        mkdir -p deploy-dist/.next
-        cp -r .next/static deploy-dist/.next/static
-
-        cp package.json deploy-dist/
-        cp server.js deploy-dist/
-
-    - name: Upload Files via SFTP
+    - name: 📂 Sync files to cPanel
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
-        server: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USERNAME }}
-        password: ${{ secrets.SFTP_PASSWORD }}
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
         port: 21
-        local-dir: ./deploy-dist/
-        server-dir: ./hmjbi-web-profile-node/ # Sesuaikan dengan Application Root Node App Anda di cPanel
-
-    - name: Trigger Server Restart via SSH
-      uses: appleboy/ssh-action@v1.0.3
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USERNAME }}
-        key: ${{ secrets.SSH_KEY }}
-        passphrase: ${{ secrets.SSH_PASSPHRASE }}
-        script: |
-          cd ./hmjbi-web-profile-node/
-          bash restart.sh
+        local-dir: ./out/
