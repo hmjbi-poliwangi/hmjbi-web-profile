@@ -26,10 +26,15 @@ jobs:
 
     - name: Prepare Deployment Package
       run: |
-        mkdir deploy-dist
+        mkdir -p deploy-dist
+
         cp -r .next/standalone/* deploy-dist/
+
         cp -r public deploy-dist/ || true
+
+        mkdir -p deploy-dist/.next
         cp -r .next/static deploy-dist/.next/static
+
         cp package.json deploy-dist/
         cp server.js deploy-dist/
 
