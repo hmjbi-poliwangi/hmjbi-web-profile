@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import {
@@ -52,7 +52,8 @@ const phaseConfig: Record<string, { label: string; bg: string; text: string; dot
     },
 };
 
-export default function DetailProkerPage() {
+// 1. Ubah nama komponen lama menjadi DetailProkerContent
+function DetailProkerContent() {
     const searchParams = useSearchParams();
     const idParam = searchParams.get("id");
     const prokerId = idParam ? parseInt(idParam) : NaN;
@@ -180,8 +181,8 @@ export default function DetailProkerPage() {
                                                                         ? "P"
                                                                         : phaseName ===
                                                                             "Pelaksanaan"
-                                                                        ? "Lks"
-                                                                        : "Lpr"}
+                                                                          ? "Lks"
+                                                                          : "Lpr"}
                                                                 </span>
                                                             </div>
                                                         )}
@@ -278,7 +279,11 @@ export default function DetailProkerPage() {
                                                 <div
                                                     className="h-full bg-yellow-400 rounded-full transition-all"
                                                     style={{
-                                                        width: `${((proker.registration.registered || 0) / proker.registration.quota) * 100}%`,
+                                                        width: `${
+                                                            ((proker.registration.registered || 0) /
+                                                                proker.registration.quota) *
+                                                            100
+                                                        }%`,
                                                     }}
                                                 />
                                             </div>
@@ -378,7 +383,10 @@ export default function DetailProkerPage() {
                                             <div className="flex items-center gap-1.5 text-sm text-gray-400">
                                                 <Instagram className="w-3.5 h-3.5 shrink-0" />
                                                 <a
-                                                    href={`https://instagram.com/${person.instagram.replace("@", "")}`}
+                                                    href={`https://instagram.com/${person.instagram.replace(
+                                                        "@",
+                                                        ""
+                                                    )}`}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                     className="hover:text-yellow-400 transition-colors"
@@ -432,5 +440,20 @@ export default function DetailProkerPage() {
                 </Section>
             )}
         </main>
+    );
+}
+
+// 2. Buat fungsi export default baru yang membungkus komponen di atas dengan Suspense
+export default function DetailProkerPage() {
+    return (
+        <Suspense
+            fallback={
+                <main className="min-h-screen bg-[#111111] flex items-center justify-center">
+                    <div className="text-yellow-400 animate-pulse">Memuat program kerja...</div>
+                </main>
+            }
+        >
+            <DetailProkerContent />
+        </Suspense>
     );
 }
