@@ -3,11 +3,12 @@
 import React, { useState, Suspense } from "react";
 import Image from "next/image";
 import { notFound, useSearchParams } from "next/navigation";
-import { dataEvents } from "@/data/events";
 import Link from "next/link";
+import { useData } from "@/lib/use-data";
 
 function DetailKegiatanContent() {
     const searchParams = useSearchParams();
+    const { data: dataEvents, loading, error } = useData("events", []);
     const idParam = searchParams.get("id");
     const eventId = idParam ? parseInt(idParam) : NaN;
 
@@ -15,6 +16,20 @@ function DetailKegiatanContent() {
 
     const currentEvent = dataEvents.find((event) => event.id === eventId);
 
+    if (loading) {
+        return (
+            <p role="status" className="py-20 text-center text-yellow-300">
+                Memuat kegiatan...
+            </p>
+        );
+    }
+    if (error) {
+        return (
+            <p role="alert" className="py-20 text-center text-red-300">
+                Data kegiatan gagal dimuat: {error}
+            </p>
+        );
+    }
     if (!currentEvent) {
         return notFound();
     }
@@ -101,7 +116,7 @@ function DetailKegiatanContent() {
                     </div>
 
                     <div className="px-4 py-2 font-bold text-black bg-yellow-400 rounded-lg shadow-lg">
-                        Tanggal {formatDate(currentEvent.date)}
+                        Tanggal {formatDate(new Date(currentEvent.date))}
                     </div>
                 </div>
             </div>

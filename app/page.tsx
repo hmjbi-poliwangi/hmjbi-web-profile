@@ -8,15 +8,14 @@ import ProkerCard from "@/components/ui/ProkerCard";
 import CalenderSection from "@/components/sections/CalenderSection";
 // import InstagramSection from "@/components/sections/InstagramSection";
 import DivisionCard from "@/components/ui/DivisionCard";
-import { dataProker } from "@/data/proker";
 import { Event } from "@/types/event";
+import { useData } from "@/lib/use-data";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Pagination, Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { dataDivisions } from "@/data/division";
 import Link from "next/link";
 
 const monthNames = [
@@ -96,28 +95,57 @@ function parseTanggalSingle(tanggal: string): Date | undefined {
     return undefined;
 }
 
-const prokerEvents: Event[] = dataProker.map((p) => {
-    const range = parseTanggalRange(p.tanggal);
-    const regOpen = p.registration?.openDate
-        ? parseTanggalSingle(p.registration.openDate)
-        : undefined;
-    return {
-        id: p.id,
-        date: range.start,
-        endDate: range.end,
-        title: p.name,
-        description: p.description,
-        image: p.image,
-        status: "COMING SOON" as const,
-        registrationDate: regOpen,
-    };
-});
-
 export default function Home() {
+    const {
+        data: prokerData,
+        loading: prokerLoading,
+        error: prokerError,
+    } = useData("proker", { dataProker: [], dataIndikator: [] });
+    const {
+        data: dataDivisions,
+        loading: divisionsLoading,
+        error: divisionsError,
+    } = useData("division", []);
+    const dataProker = prokerData.dataProker;
+    const prokerEvents: Event[] = dataProker.map((proker) => {
+        const range = parseTanggalRange(proker.tanggal);
+        const registrationDate = proker.registration?.openDate
+            ? parseTanggalSingle(proker.registration.openDate)
+            : undefined;
+        return {
+            id: proker.id,
+            date: range.start,
+            endDate: range.end,
+            title: proker.name,
+            description: proker.description,
+            image: proker.image,
+            status: "COMING SOON",
+            registrationDate,
+        };
+    });
+
     return (
         <>
             {/* Hero */}
             <HeroSection />
+            <div className="fixed right-4 top-28 z-40 md:right-8">
+                <Link
+                    href="/admin/login"
+                    className="rounded-full border border-yellow-400/60 bg-black/80 px-4 py-2 text-sm font-bold text-yellow-300 shadow-lg backdrop-blur transition hover:bg-yellow-400 hover:text-black"
+                >
+                    Login Admin
+                </Link>
+            </div>
+            {(prokerError || divisionsError) && (
+                <div role="alert" className="bg-red-950 px-6 py-3 text-center text-sm text-red-200">
+                    Data situs gagal dimuat: {prokerError || divisionsError}
+                </div>
+            )}
+            {(prokerLoading || divisionsLoading) && (
+                <p className="bg-zinc-950 py-2 text-center text-sm text-gray-400" role="status">
+                    Memuat data situs...
+                </p>
+            )}
 
             {/* About Section */}
             <AboutPreviewSection />
@@ -159,7 +187,7 @@ export default function Home() {
                             {dataDivisions.map((division) => (
                                 <SwiperSlide key={division.name}>
                                     <Link
-                                        href={`/division/detail-division/${division.slug || division.name}`}
+                                        href={`/division/detail-division/?name=${encodeURIComponent(division.slug || division.name)}`}
                                     >
                                         <DivisionCard variant="group" dataDivision={division} />
                                     </Link>
@@ -209,7 +237,10 @@ export default function Home() {
                     </h2>
                     <div className="grid justify-center grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4 align-items-center">
                         {dataProker.slice(0, 4).map((proker) => (
-                            <Link key={proker.id} href={`/activities/detail-proker/${proker.id}`}>
+                            <Link
+                                key={proker.id}
+                                href={`/activities/detail-proker/?id=${proker.id}`}
+                            >
                                 <ProkerCard proker={proker} />
                             </Link>
                         ))}

@@ -14,7 +14,7 @@ import {
     User,
     Instagram,
 } from "lucide-react";
-import { dataProker, dataIndikator } from "@/data/proker";
+import { useData } from "@/lib/use-data";
 import Section from "@/components/layout/Section";
 import Container from "@/components/layout/Container";
 
@@ -55,11 +55,25 @@ const phaseConfig: Record<string, { label: string; bg: string; text: string; dot
 // 1. Ubah nama komponen lama menjadi DetailProkerContent
 function DetailProkerContent() {
     const searchParams = useSearchParams();
+    const {
+        data: prokerData,
+        loading,
+        error,
+    } = useData("proker", {
+        dataProker: [],
+        dataIndikator: [],
+    });
+    const { data: divisions } = useData("division", []);
     const idParam = searchParams.get("id");
     const prokerId = idParam ? parseInt(idParam) : NaN;
 
-    const proker = dataProker.find((p) => p.id === prokerId);
-    const indikator = dataIndikator.find((i) => i.prokerName === proker?.name);
+    const proker = prokerData.dataProker.find((p) => p.id === prokerId);
+    const indikator = prokerData.dataIndikator.find((i) => i.prokerName === proker?.name);
+    const relatedDivision = divisions.find(
+        (division) =>
+            division.slug === proker?.divisionSlug ||
+            (!division.slug && division.name === proker?.divisionSlug)
+    );
     const timelineRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -71,7 +85,28 @@ function DetailProkerContent() {
         const monthWidth = containerWidth / (months.length - 1);
         const scrollTarget = monthWidth * (startMonth - 1);
         timelineRef.current.scrollLeft = Math.max(0, scrollTarget - 80);
-    }, [proker]);
+    }, [proker, loading]);
+
+    if (loading) {
+        return (
+            <main
+                className="min-h-screen bg-[#111111] flex items-center justify-center text-yellow-300"
+                role="status"
+            >
+                Memuat program kerja...
+            </main>
+        );
+    }
+    if (error) {
+        return (
+            <main
+                className="min-h-screen bg-[#111111] flex items-center justify-center text-red-300"
+                role="alert"
+            >
+                Data program kerja gagal dimuat: {error}
+            </main>
+        );
+    }
 
     if (!proker) {
         return (
@@ -104,6 +139,15 @@ function DetailProkerContent() {
                         </h1>
                         <p className="text-gray-400 text-lg mb-4">{proker.description}</p>
                         <div className="flex flex-wrap gap-4 text-sm">
+                            {relatedDivision && (
+                                <Link
+                                    href={`/division/detail-division/?name=${encodeURIComponent(relatedDivision.slug || relatedDivision.name)}`}
+                                    className="flex items-center gap-2 rounded-lg border border-yellow-400/30 bg-yellow-400/10 px-3 py-1.5 text-yellow-200 transition hover:bg-yellow-400/20"
+                                >
+                                    <span className="text-yellow-400">Divisi</span>
+                                    <span>{relatedDivision.name}</span>
+                                </Link>
+                            )}
                             <div className="flex items-center gap-2 text-gray-300 bg-zinc-800/50 px-3 py-1.5 rounded-lg">
                                 <MapPin className="w-4 h-4 text-[#FFD700]" />
                                 <span>{proker.tempat}</span>

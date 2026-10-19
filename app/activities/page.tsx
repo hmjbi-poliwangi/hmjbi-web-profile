@@ -5,7 +5,8 @@ import HeaderProker from "@/components/sections/HeaderActivitiesSection";
 import SearchBar from "@/components/sections/SearchBarSection";
 import ProkerGanttChart from "@/components/sections/ProkerGanttChart";
 import ProkerCard from "@/components/ui/ProkerCard";
-import { dataProker, ProkerItem } from "@/data/proker";
+import { ProkerItem } from "@/types/proker";
+import { useData } from "@/lib/use-data";
 import Link from "next/link";
 
 type StatusFilter = "Semua" | "Sedang Berlangsung" | "Akan Datang" | "Selesai";
@@ -43,6 +44,15 @@ const currentProkerMonth = now.getMonth() - 1 + MONTH_OFFSET;
 export default function ProkerPage() {
     const [searchQuery, setSearchQuery] = useState("");
     const [filterStatus, setFilterStatus] = useState<StatusFilter>("Semua");
+    const {
+        data: prokerData,
+        loading,
+        error,
+    } = useData("proker", {
+        dataProker: [],
+        dataIndikator: [],
+    });
+    const dataProker = prokerData.dataProker;
 
     const filteredProker = dataProker.filter((proker) => {
         const matchSearch = proker.name.toLowerCase().includes(searchQuery.toLowerCase());
@@ -55,6 +65,19 @@ export default function ProkerPage() {
     return (
         <main className="min-h-screen bg-[#111111] py-12 px-6 font-sans">
             <div className="max-w-6xl mx-auto space-y-12">
+                {error && (
+                    <p
+                        role="alert"
+                        className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-200"
+                    >
+                        Data program kerja gagal dimuat: {error}
+                    </p>
+                )}
+                {loading && (
+                    <p className="text-center text-sm text-gray-400" role="status">
+                        Memuat program kerja...
+                    </p>
+                )}
                 <section>
                     <HeaderProker />
                     <SearchBar
@@ -96,7 +119,7 @@ export default function ProkerPage() {
                                             prokersInMonth.map((p) => (
                                                 <Link
                                                     key={p.id}
-                                                    href={`/activities/detail-proker/${p.id}`}
+                                                    href={`/activities/detail-proker/?id=${p.id}`}
                                                     className="px-2 py-1.5 bg-yellow-400/10 border border-yellow-400/20 rounded-lg text-[10px] font-semibold text-yellow-400 text-center hover:bg-yellow-400/20 transition-colors truncate"
                                                 >
                                                     {p.name}
@@ -132,7 +155,7 @@ export default function ProkerPage() {
                                         {prokersInMonth.map((p) => (
                                             <Link
                                                 key={p.id}
-                                                href={`/activities/detail-proker/${p.id}`}
+                                                href={`/activities/detail-proker/?id=${p.id}`}
                                                 className="px-2 py-1.5 bg-yellow-400/10 border border-yellow-400/20 rounded-lg text-[10px] font-semibold text-yellow-400 hover:bg-yellow-400/20 transition-colors truncate"
                                             >
                                                 {p.name}
@@ -160,7 +183,7 @@ export default function ProkerPage() {
                             {filteredProker.map((proker) => (
                                 <Link
                                     key={proker.id}
-                                    href={`/activities/detail-proker/${proker.id}`}
+                                    href={`/activities/detail-proker/?id=${proker.id}`}
                                 >
                                     <ProkerCard proker={proker} />
                                 </Link>

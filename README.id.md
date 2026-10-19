@@ -102,6 +102,20 @@ http://localhost:3000
 
 ---
 
+## 🔐 Admin & Penyimpanan Data
+
+Halaman admin tersedia di `/admin/login`.
+
+- Username: `admin`
+- Password: `admin123`
+- Editor mengelola `data/division.json`, `data/events.json`, `data/divisions-list.json`, dan `data/proker.json` langsung pada server; tidak menggunakan database.
+- Untuk produksi, aplikasi harus dijalankan sebagai server Next.js/Node.js dengan filesystem persisten yang dapat ditulis. Hosting static export saja tidak mendukung API maupun penyimpanan perubahan.
+- Workflow GitHub Actions mengunggah paket standalone ke cPanel melalui FTP. Buat aplikasi Node.js cPanel dengan app root pada folder unggahan, Node.js 20+, dan startup file `server.js`; restart aplikasi setelah deployment. Folder `data` harus tetap persisten. Workflow mengecualikan JSON aktif dari sinkronisasi supaya perubahan admin tidak tertimpa saat deployment berikutnya.
+- Set `ADMIN_SESSION_SECRET` menjadi secret acak yang kuat pada environment produksi. `HMJBI_DATA_DIR` dapat diarahkan ke folder persisten di luar direktori rilis; bila belum ada, data awal disalin dari `data-seed`.
+- Kredensial yang hardcoded adalah kredensial demo sesuai kebutuhan proyek dan tidak aman untuk penggunaan produksi publik. Ganti mekanisme login sebelum membuka dashboard ke internet.
+
+---
+
 ## 📂 Struktur Project
 
 ```

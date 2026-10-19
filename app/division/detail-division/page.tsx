@@ -3,14 +3,29 @@
 import { Suspense } from "react";
 import Image from "next/image";
 import { notFound, useSearchParams } from "next/navigation";
-import { dataDivisions } from "@/data/division";
 import DivisionCard from "@/components/ui/DivisionCard";
+import { useData } from "@/lib/use-data";
 
 function DivisionContent() {
     const searchParams = useSearchParams();
+    const { data: dataDivisions, loading, error } = useData("division", []);
 
     const decodedName = searchParams.get("name") || searchParams.get("nameDivision");
 
+    if (loading) {
+        return (
+            <p role="status" className="py-20 text-center text-yellow-300">
+                Memuat data divisi...
+            </p>
+        );
+    }
+    if (error) {
+        return (
+            <p role="alert" className="py-20 text-center text-red-300">
+                Data divisi gagal dimuat: {error}
+            </p>
+        );
+    }
     if (!decodedName) {
         return notFound();
     }

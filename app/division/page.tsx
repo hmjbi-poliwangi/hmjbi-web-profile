@@ -1,8 +1,11 @@
-import { dataDivisions } from "@/data/division"; // Sesuaikan path ini
+"use client";
+
 import DivisionCard from "@/components/ui/DivisionCard"; // Sesuaikan path ini dengan lokasi komponen DivisionCard kamu
 import Link from "next/link";
+import { useData } from "@/lib/use-data";
 
 export default function StrukturOrganisasiSection() {
+    const { data: dataDivisions, error } = useData("division", []);
     const urutanPengurus = ["Sekretaris", "Ketua & Wakil", "Bendahara"];
     const urutanDivisi = ["MEDKOM", "PSDM", "HUMAS", "RISTEK", "KWU", "PENGMAS"];
 
@@ -18,6 +21,11 @@ export default function StrukturOrganisasiSection() {
     return (
         <section className="min-h-screen bg-[#111111] py-16 px-6 font-sans">
             <div className="max-w-5xl mx-auto space-y-16">
+                {error && (
+                    <p role="alert" className="text-center text-red-300">
+                        Data divisi gagal dimuat: {error}
+                    </p>
+                )}
                 {/* SECTION 1: Pengurus Harian */}
                 <div>
                     <h2 className="mb-12 text-2xl font-bold text-center text-white md:text-3xl">
@@ -35,7 +43,7 @@ export default function StrukturOrganisasiSection() {
                             return (
                                 <Link
                                     key={index}
-                                    href={`/division/detail-division/${item.slug || item.name}`}
+                                    href={`/division/detail-division/?name=${item.slug || item.name}`}
                                 >
                                     <DivisionCard variant="group" dataDivision={modifiedItem} />
                                 </Link>
@@ -62,7 +70,7 @@ export default function StrukturOrganisasiSection() {
                             return (
                                 <Link
                                     key={index}
-                                    href={`/division/detail-division/${item.slug || item.name}`}
+                                    href={`/division/detail-division/?name=${item.slug || item.name}`}
                                 >
                                     <DivisionCard variant="group" dataDivision={modifiedItem} />
                                 </Link>

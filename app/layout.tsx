@@ -1,7 +1,6 @@
 import "./globals.css";
 import { ReactNode } from "react";
-import Navbar from "../components/layout/Navbar";
-import Footer from "../components/layout/Footer";
+import SiteChrome from "@/components/layout/SiteChrome";
 
 export const metadata = {
     title: "HMJBI Web Profile",
@@ -17,9 +16,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     return (
         <html lang="id">
             <body className="bg-(--color-background) text-text-white font-sans">
-                <Navbar />
-                <main className="pt-24">{children}</main>
-                <Footer />
+                <SiteChrome>{children}</SiteChrome>
             </body>
         </html>
     );
