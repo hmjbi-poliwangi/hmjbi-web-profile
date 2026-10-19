@@ -1,0 +1,55 @@
+name: Deploy Next.js Node App to cPanel
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+
+    - name: Install Dependencies
+      run: npm ci
+
+    - name: Build Next.js Application
+      run: npm run build
+
+    - name: Prepare Deployment Package
+      run: |
+        mkdir deploy-dist
+        cp -r .next/standalone/* deploy-dist/
+        cp -r public deploy-dist/ || true
+        cp -r .next/static deploy-dist/.next/static
+        cp package.json deploy-dist/
+        cp server.js deploy-dist/
+
+    - name: Upload Files via SFTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        password: ${{ secrets.SFTP_PASSWORD }}
+        port: 21
+        local-dir: ./deploy-dist/
+        server-dir: ./hmjbi-web-profile-node/ # Sesuaikan dengan Application Root Node App Anda di cPanel
+
+    - name: Trigger Server Restart via SSH
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        passphrase: ${{ secrets.SSH_PASSPHRASE }}
+        script: |
+          cd ./hmjbi-web-profile-node/
+          bash restart.sh
