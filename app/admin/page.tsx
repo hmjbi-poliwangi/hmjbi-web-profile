@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import JsonEditor from "@/components/admin/JsonEditor";
+import { SkeletonBlock } from "@/components/ui/ContentSkeleton";
 import { DataCollection } from "@/types/data";
 
 const collections: { id: DataCollection; label: string; filename: string }[] = [
@@ -283,9 +284,12 @@ export default function AdminDashboardPage() {
                             </p>
                         )}
                         {loading && (
-                            <p role="status" className="py-12 text-center text-zinc-400">
-                                Memuat formulir...
-                            </p>
+                            <div role="status" aria-label="Memuat formulir" className="space-y-4 py-4">
+                                <SkeletonBlock className="h-20 w-full rounded-xl" />
+                                <SkeletonBlock className="h-20 w-full rounded-xl" />
+                                <SkeletonBlock className="h-20 w-full rounded-xl" />
+                                <span className="sr-only">Memuat formulir...</span>
+                            </div>
                         )}
                         {!loading && data !== null && (
                             <JsonEditor

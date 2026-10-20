@@ -7,6 +7,7 @@ import ProkerGanttChart from "@/components/sections/ProkerGanttChart";
 import ProkerCard from "@/components/ui/ProkerCard";
 import { ProkerItem } from "@/types/proker";
 import { useData } from "@/lib/use-data";
+import { CardGridSkeleton } from "@/components/ui/ContentSkeleton";
 import Link from "next/link";
 
 type StatusFilter = "Semua" | "Sedang Berlangsung" | "Akan Datang" | "Selesai";
@@ -71,11 +72,6 @@ export default function ProkerPage() {
                         className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-200"
                     >
                         Data program kerja gagal dimuat: {error}
-                    </p>
-                )}
-                {loading && (
-                    <p className="text-center text-sm text-gray-400" role="status">
-                        Memuat program kerja...
                     </p>
                 )}
                 <section>
@@ -178,7 +174,12 @@ export default function ProkerPage() {
                     <h2 className="text-xl font-bold text-white mb-6">
                         Detail <span className="text-[#FFD700]">Program Kerja</span>
                     </h2>
-                    {filteredProker.length > 0 ? (
+                    {loading ? (
+                        <CardGridSkeleton
+                            count={6}
+                            gridClassName="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3"
+                        />
+                    ) : filteredProker.length > 0 ? (
                         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
                             {filteredProker.map((proker) => (
                                 <Link

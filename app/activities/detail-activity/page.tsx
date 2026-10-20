@@ -5,6 +5,7 @@ import Image from "next/image";
 import { notFound, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useData } from "@/lib/use-data";
+import { SkeletonBlock } from "@/components/ui/ContentSkeleton";
 
 function DetailKegiatanContent() {
     const searchParams = useSearchParams();
@@ -18,9 +19,23 @@ function DetailKegiatanContent() {
 
     if (loading) {
         return (
-            <p role="status" className="py-20 text-center text-yellow-300">
-                Memuat kegiatan...
-            </p>
+            <section className="max-w-6xl mx-auto" role="status" aria-label="Memuat kegiatan">
+                <div className="mb-10 flex justify-center">
+                    <SkeletonBlock className="h-9 w-2/3 max-w-xl" />
+                </div>
+                <SkeletonBlock className="mx-auto aspect-video w-full max-w-4xl rounded-2xl" />
+                <div className="mx-auto mt-8 max-w-4xl space-y-3">
+                    <SkeletonBlock className="h-4 w-full" />
+                    <SkeletonBlock className="h-4 w-full" />
+                    <SkeletonBlock className="h-4 w-4/5" />
+                </div>
+                <div className="mt-16 grid grid-cols-1 gap-4 sm:grid-cols-3" aria-hidden="true">
+                    {Array.from({ length: 3 }, (_, index) => (
+                        <SkeletonBlock key={index} className="aspect-video rounded-xl" />
+                    ))}
+                </div>
+                <span className="sr-only">Memuat detail kegiatan...</span>
+            </section>
         );
     }
     if (error) {
@@ -231,8 +246,9 @@ export default function DetailKegiatanPage() {
         <main className="min-h-screen bg-[#111111] py-16 px-6 font-sans">
             <Suspense
                 fallback={
-                    <div className="flex justify-center items-center h-[50vh] text-yellow-400">
-                        Memuat kegiatan...
+                    <div className="mx-auto max-w-6xl py-8" role="status" aria-label="Memuat kegiatan">
+                        <SkeletonBlock className="mx-auto mb-10 h-9 w-2/3 max-w-xl" />
+                        <SkeletonBlock className="mx-auto aspect-video w-full max-w-4xl rounded-2xl" />
                     </div>
                 }
             >
