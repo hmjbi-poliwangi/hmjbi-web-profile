@@ -30,6 +30,9 @@ jobs:
                   cp -R .next/static/. .next/standalone/.next/static/
                   cp -R public/. .next/standalone/public/
                   cp data/*.json .next/standalone/data-seed/
+                  test -s .next/standalone/server.js
+                  test -n "$(find .next/standalone/.next/static -type f -print -quit)"
+                  echo "Prepared $(find .next/standalone/.next/static -type f | wc -l) Next.js static assets"
 
             - name: 📂 Upload Node.js application to cPanel
               uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -39,5 +42,6 @@ jobs:
                   password: ${{ secrets.FTP_PASSWORD }}
                   port: 21
                   local-dir: ./.next/standalone/
+                  log-level: verbose
                   exclude: |
                       **/data/*.json
