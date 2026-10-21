@@ -15,7 +15,6 @@ import {
     Instagram,
 } from "lucide-react";
 import { useData } from "@/lib/use-data";
-import { SkeletonBlock } from "@/components/ui/ContentSkeleton";
 import Section from "@/components/layout/Section";
 import Container from "@/components/layout/Container";
 
@@ -64,11 +63,7 @@ function DetailProkerContent() {
         dataProker: [],
         dataIndikator: [],
     });
-    const {
-        data: divisions,
-        loading: divisionsLoading,
-        error: divisionsError,
-    } = useData("division", []);
+    const { data: divisions } = useData("division", []);
     const idParam = searchParams.get("id");
     const prokerId = idParam ? parseInt(idParam) : NaN;
 
@@ -92,36 +87,23 @@ function DetailProkerContent() {
         timelineRef.current.scrollLeft = Math.max(0, scrollTarget - 80);
     }, [proker, loading]);
 
-    if (loading || divisionsLoading) {
+    if (loading) {
         return (
-            <main className="min-h-screen bg-[#111111] font-sans pb-20" role="status" aria-label="Memuat program kerja">
-                <section className="bg-gradient-to-b from-zinc-900 to-[#111111] py-16 md:py-20">
-                    <div className="mx-auto max-w-6xl space-y-5 px-6">
-                        <SkeletonBlock className="h-5 w-24" />
-                        <SkeletonBlock className="h-12 w-3/4 max-w-2xl" />
-                        <SkeletonBlock className="h-5 w-full max-w-3xl" />
-                        <SkeletonBlock className="h-5 w-2/3 max-w-xl" />
-                    </div>
-                </section>
-                <div className="mx-auto max-w-6xl space-y-8 px-6 py-10">
-                    <SkeletonBlock className="h-64 w-full rounded-2xl" />
-                    <div className="grid gap-5 md:grid-cols-2">
-                        <SkeletonBlock className="h-40 rounded-2xl" />
-                        <SkeletonBlock className="h-40 rounded-2xl" />
-                    </div>
-                    <SkeletonBlock className="h-48 w-full rounded-2xl" />
-                </div>
-                <span className="sr-only">Memuat detail program kerja...</span>
+            <main
+                className="min-h-screen bg-[#111111] flex items-center justify-center text-yellow-300"
+                role="status"
+            >
+                Memuat program kerja...
             </main>
         );
     }
-    if (error || divisionsError) {
+    if (error) {
         return (
             <main
                 className="min-h-screen bg-[#111111] flex items-center justify-center text-red-300"
                 role="alert"
             >
-                Data program kerja gagal dimuat: {error || divisionsError}
+                Data program kerja gagal dimuat: {error}
             </main>
         );
     }
@@ -510,9 +492,8 @@ export default function DetailProkerPage() {
     return (
         <Suspense
             fallback={
-                <main className="min-h-screen bg-[#111111] px-6 py-16" role="status" aria-label="Memuat program kerja">
-                    <SkeletonBlock className="mx-auto mb-6 h-12 w-3/4 max-w-2xl" />
-                    <SkeletonBlock className="mx-auto h-64 w-full max-w-6xl rounded-2xl" />
+                <main className="min-h-screen bg-[#111111] flex items-center justify-center">
+                    <div className="text-yellow-400 animate-pulse">Memuat program kerja...</div>
                 </main>
             }
         >

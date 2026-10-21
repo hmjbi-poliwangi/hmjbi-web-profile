@@ -3,10 +3,9 @@
 import DivisionCard from "@/components/ui/DivisionCard"; // Sesuaikan path ini dengan lokasi komponen DivisionCard kamu
 import Link from "next/link";
 import { useData } from "@/lib/use-data";
-import { CardGridSkeleton } from "@/components/ui/ContentSkeleton";
 
 export default function StrukturOrganisasiSection() {
-    const { data: dataDivisions, loading, error } = useData("division", []);
+    const { data: dataDivisions, error } = useData("division", []);
     const urutanPengurus = ["Sekretaris", "Ketua & Wakil", "Bendahara"];
     const urutanDivisi = ["MEDKOM", "PSDM", "HUMAS", "RISTEK", "KWU", "PENGMAS"];
 
@@ -34,14 +33,8 @@ export default function StrukturOrganisasiSection() {
                     </h2>
 
                     {/* Grid 3 Kolom */}
-                    {loading ? (
-                        <CardGridSkeleton
-                            count={3}
-                            gridClassName="grid grid-cols-1 gap-8 sm:grid-cols-3"
-                        />
-                    ) : (
-                        <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
-                            {pengurusHarian.map((item, index) => {
+                    <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
+                        {pengurusHarian.map((item, index) => {
                             const modifiedItem = {
                                 ...item,
                                 name: item.name,
@@ -55,9 +48,8 @@ export default function StrukturOrganisasiSection() {
                                     <DivisionCard variant="group" dataDivision={modifiedItem} />
                                 </Link>
                             );
-                            })}
-                        </div>
-                    )}
+                        })}
+                    </div>
                 </div>
 
                 {/* SECTION 2: Divisi */}
@@ -67,14 +59,8 @@ export default function StrukturOrganisasiSection() {
                     </h2>
 
                     {/* Grid 3 Kolom */}
-                    {loading ? (
-                        <CardGridSkeleton
-                            count={6}
-                            gridClassName="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3"
-                        />
-                    ) : (
-                        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
-                            {divisiList.map((item, index) => {
+                    <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
+                        {divisiList.map((item, index) => {
                             // Menyesuaikan kapitalisasi teks (Misal: "MEDKOM" -> "Medkom")
                             const modifiedItem = {
                                 ...item,
@@ -89,9 +75,8 @@ export default function StrukturOrganisasiSection() {
                                     <DivisionCard variant="group" dataDivision={modifiedItem} />
                                 </Link>
                             );
-                            })}
-                        </div>
-                    )}
+                        })}
+                    </div>
                 </div>
             </div>
         </section>

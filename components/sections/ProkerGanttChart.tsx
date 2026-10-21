@@ -2,7 +2,6 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useData } from "@/lib/use-data";
-import { SkeletonBlock } from "@/components/ui/ContentSkeleton";
 
 const months = [
     { label: "Feb", num: 1 },
@@ -41,10 +40,7 @@ const phaseConfig: Record<string, { label: string; bg: string; text: string; dot
 export default function ProkerGanttChart() {
     const scrollRef = useRef<HTMLDivElement>(null);
     const [showHint, setShowHint] = useState(true);
-    const { data: prokerData, loading, error } = useData("proker", {
-        dataProker: [],
-        dataIndikator: [],
-    });
+    const { data: prokerData, error } = useData("proker", { dataProker: [], dataIndikator: [] });
 
     useEffect(() => {
         const el = scrollRef.current;
@@ -73,18 +69,6 @@ export default function ProkerGanttChart() {
             </div>
 
             <div className="relative">
-                {loading ? (
-                    <div className="space-y-3 p-5" role="status" aria-label="Memuat timeline">
-                        <SkeletonBlock className="h-8 w-full" />
-                        {Array.from({ length: 5 }, (_, index) => (
-                            <div key={index} className="flex gap-3" aria-hidden="true">
-                                <SkeletonBlock className="h-12 w-24 shrink-0 md:w-36" />
-                                <SkeletonBlock className="h-12 flex-1" />
-                            </div>
-                        ))}
-                        <span className="sr-only">Memuat timeline program kerja...</span>
-                    </div>
-                ) : (
                 <div ref={scrollRef} className="overflow-x-auto">
                     <div className="min-w-[700px] md:min-w-0">
                         {/* Header */}
@@ -150,7 +134,6 @@ export default function ProkerGanttChart() {
                         ))}
                     </div>
                 </div>
-                )}
                 {showHint && (
                     <div className="absolute right-0 top-0 bottom-0 flex items-center pointer-events-none md:hidden">
                         <div className="w-20 h-full bg-gradient-to-l from-zinc-900/50 to-transparent" />

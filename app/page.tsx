@@ -8,7 +8,6 @@ import ProkerCard from "@/components/ui/ProkerCard";
 import CalenderSection from "@/components/sections/CalenderSection";
 // import InstagramSection from "@/components/sections/InstagramSection";
 import DivisionCard from "@/components/ui/DivisionCard";
-import { CardGridSkeleton, SkeletonBlock } from "@/components/ui/ContentSkeleton";
 import { Event } from "@/types/event";
 import { useData } from "@/lib/use-data";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -142,6 +141,12 @@ export default function Home() {
                     Data situs gagal dimuat: {prokerError || divisionsError}
                 </div>
             )}
+            {(prokerLoading || divisionsLoading) && (
+                <p className="bg-zinc-950 py-2 text-center text-sm text-gray-400" role="status">
+                    Memuat data situs...
+                </p>
+            )}
+
             {/* About Section */}
             <AboutPreviewSection />
 
@@ -152,12 +157,6 @@ export default function Home() {
                         Divisi <span className="text-[#FFD700]">HMJBI</span>
                     </h2>
                     <div className="relative px-6 md:px-14">
-                        {divisionsLoading ? (
-                            <CardGridSkeleton
-                                count={3}
-                                gridClassName="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
-                            />
-                        ) : (
                         <Swiper
                             slidesPerView={1.5}
                             spaceBetween={12}
@@ -195,9 +194,8 @@ export default function Home() {
                                 </SwiperSlide>
                             ))}
                         </Swiper>
-                        )}
 
-                        {!divisionsLoading && <button className="swiper-prev absolute -left-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 md:w-14 md:h-14 flex items-center justify-center bg-[#FFD700] text-black rounded-full shadow-2xl hover:bg-yellow-500 hover:scale-110 transition-all">
+                        <button className="swiper-prev absolute -left-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 md:w-14 md:h-14 flex items-center justify-center bg-[#FFD700] text-black rounded-full shadow-2xl hover:bg-yellow-500 hover:scale-110 transition-all">
                             <svg
                                 className="w-4 h-4 md:w-6 md:h-6"
                                 fill="none"
@@ -211,8 +209,8 @@ export default function Home() {
                                     d="M15 19l-7-7 7-7"
                                 />
                             </svg>
-                        </button>}
-                        {!divisionsLoading && <button className="swiper-next absolute -right-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 md:w-14 md:h-14 flex items-center justify-center bg-[#FFD700] text-black rounded-full shadow-2xl hover:bg-yellow-500 hover:scale-110 transition-all">
+                        </button>
+                        <button className="swiper-next absolute -right-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 md:w-14 md:h-14 flex items-center justify-center bg-[#FFD700] text-black rounded-full shadow-2xl hover:bg-yellow-500 hover:scale-110 transition-all">
                             <svg
                                 className="w-4 h-4 md:w-6 md:h-6"
                                 fill="none"
@@ -226,7 +224,7 @@ export default function Home() {
                                     d="M9 5l7 7-7 7"
                                 />
                             </svg>
-                        </button>}
+                        </button>
                     </div>
                 </Container>
             </Section>
@@ -237,23 +235,16 @@ export default function Home() {
                     <h2 className="mb-10 text-3xl font-bold text-center text-white md:text-4xl">
                         Proker <span className="text-[#FFD700]">HMJBI</span>
                     </h2>
-                    {prokerLoading ? (
-                        <CardGridSkeleton
-                            count={4}
-                            gridClassName="grid justify-center grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4"
-                        />
-                    ) : (
-                        <div className="grid justify-center grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4 align-items-center">
-                            {dataProker.slice(0, 4).map((proker) => (
-                                <Link
-                                    key={proker.id}
-                                    href={`/activities/detail-proker/?id=${proker.id}`}
-                                >
-                                    <ProkerCard proker={proker} />
-                                </Link>
-                            ))}
-                        </div>
-                    )}
+                    <div className="grid justify-center grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4 align-items-center">
+                        {dataProker.slice(0, 4).map((proker) => (
+                            <Link
+                                key={proker.id}
+                                href={`/activities/detail-proker/?id=${proker.id}`}
+                            >
+                                <ProkerCard proker={proker} />
+                            </Link>
+                        ))}
+                    </div>
                     <div className="mt-5 text-center">
                         <Link href="/activities">
                             <button className="px-10 py-3 text-xs font-black tracking-widest text-black uppercase transition-all transform bg-yellow-400 rounded-full hover:bg-yellow-500 hover:scale-105">
@@ -267,19 +258,7 @@ export default function Home() {
             {/** Calender Section */}
             <Section className="bg-(--color-secondary) text-text-white">
                 <Container>
-                    {prokerLoading ? (
-                        <div role="status" aria-label="Memuat kalender kegiatan">
-                            <SkeletonBlock className="mb-6 h-8 w-56" />
-                            <div className="grid grid-cols-7 gap-2" aria-hidden="true">
-                                {Array.from({ length: 35 }, (_, index) => (
-                                    <SkeletonBlock key={index} className="h-12 sm:h-16" />
-                                ))}
-                            </div>
-                            <span className="sr-only">Memuat kalender kegiatan...</span>
-                        </div>
-                    ) : (
-                        <CalenderSection dataKegiatan={prokerEvents} />
-                    )}
+                    <CalenderSection dataKegiatan={prokerEvents} />
                 </Container>
             </Section>
 

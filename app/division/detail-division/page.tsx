@@ -5,7 +5,6 @@ import Image from "next/image";
 import { notFound, useSearchParams } from "next/navigation";
 import DivisionCard from "@/components/ui/DivisionCard";
 import { useData } from "@/lib/use-data";
-import { SkeletonBlock } from "@/components/ui/ContentSkeleton";
 
 function DivisionContent() {
     const searchParams = useSearchParams();
@@ -15,24 +14,9 @@ function DivisionContent() {
 
     if (loading) {
         return (
-            <section className="mx-auto max-w-5xl" role="status" aria-label="Memuat divisi">
-                <div className="mb-10 space-y-4 text-center">
-                    <SkeletonBlock className="mx-auto h-9 w-56" />
-                    <SkeletonBlock className="mx-auto h-4 w-full max-w-3xl" />
-                    <SkeletonBlock className="mx-auto h-4 w-4/5 max-w-2xl" />
-                </div>
-                <SkeletonBlock className="mb-14 h-64 w-full rounded-3xl md:h-96" />
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
-                    {Array.from({ length: 6 }, (_, index) => (
-                        <div key={index} className="rounded-2xl border border-zinc-800 p-4">
-                            <SkeletonBlock className="mx-auto mb-4 h-36 w-36 rounded-full" />
-                            <SkeletonBlock className="mx-auto mb-2 h-4 w-2/3" />
-                            <SkeletonBlock className="mx-auto h-3 w-1/2" />
-                        </div>
-                    ))}
-                </div>
-                <span className="sr-only">Memuat struktur divisi...</span>
-            </section>
+            <p role="status" className="py-20 text-center text-yellow-300">
+                Memuat data divisi...
+            </p>
         );
     }
     if (error) {
@@ -268,9 +252,8 @@ export default function DetailDivisionPage() {
         <main className="min-h-screen bg-[#111111] py-12 px-6 font-sans">
             <Suspense
                 fallback={
-                    <div className="mx-auto min-h-[50vh] max-w-5xl py-8" role="status" aria-label="Memuat divisi">
-                        <SkeletonBlock className="mx-auto mb-8 h-9 w-56" />
-                        <SkeletonBlock className="h-64 w-full rounded-3xl md:h-96" />
+                    <div className="flex items-center justify-center min-h-[50vh] text-yellow-400">
+                        Memuat data divisi...
                     </div>
                 }
             >
