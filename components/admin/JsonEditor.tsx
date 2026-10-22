@@ -1,6 +1,7 @@
 "use client";
 
 import { ReactNode } from "react";
+import { Trash2 } from "lucide-react";
 import { DataCollection } from "@/types/data";
 
 type JsonPath = (string | number)[];
@@ -199,11 +200,12 @@ function JsonField({
                         <div className="space-y-3 border-t border-zinc-800 p-3">
                             <button
                                 type="button"
-                                className="rounded-md px-2 py-1 text-xs text-red-300 hover:bg-red-950"
+                                className="inline-flex items-center gap-2 rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm font-semibold text-red-300 transition hover:border-red-500/60 hover:bg-red-500/20 hover:text-red-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400"
                                 onClick={() =>
                                     onChange(value.filter((_, itemIndex) => itemIndex !== index))
                                 }
                             >
+                                <Trash2 aria-hidden="true" className="h-4 w-4" />
                                 Hapus item
                             </button>
                             <JsonField

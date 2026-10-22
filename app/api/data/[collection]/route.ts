@@ -24,15 +24,41 @@ function hasAllowedOrigin(request: NextRequest) {
         return false;
     }
 
-    const forwardedHost = request.headers.get("x-forwarded-host")?.split(",")[0]?.trim();
+    const configuredOrigin = process.env.HMJBI_PUBLIC_ORIGIN;
+    if (configuredOrigin) {
+        try {
+            const configuredUrl = new URL(configuredOrigin);
+            if (
+                (configuredUrl.protocol === "http:" || configuredUrl.protocol === "https:") &&
+                configuredUrl.host.toLowerCase() === originUrl.host.toLowerCase()
+            ) {
+                return true;
+            }
+        } catch {
+            console.error("HMJBI_PUBLIC_ORIGIN harus berupa URL publik yang valid");
+            return false;
+        }
+    }
+
     const requestHosts = [
         request.nextUrl.host,
         request.headers.get("host"),
-        forwardedHost,
-    ].filter((host): host is string => Boolean(host));
+        request.headers.get("x-forwarded-host"),
+        request.headers.get("x-original-host"),
+    ]
+        .flatMap((value) => value?.split(",") ?? [])
+        .map((host) => host.trim().toLowerCase())
+        .filter(Boolean);
 
     // Compare hosts rather than URL origins because TLS may terminate at a reverse proxy.
-    return requestHosts.some((host) => host.toLowerCase() === originUrl.host.toLowerCase());
+    const allowed = requestHosts.includes(originUrl.host.toLowerCase());
+    if (!allowed) {
+        console.warn("Origin request admin data tidak cocok dengan host aplikasi", {
+            originHost: originUrl.host,
+            requestHosts,
+        });
+    }
+    return allowed;
 }
 
 async function getCollection(params: Promise<{ collection: string }>) {

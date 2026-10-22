@@ -1,6 +1,6 @@
 [
     {
-        "name": "Ketua & Wakil",
+        "name": "Ketua & Wakil Himpunan",
         "slug": "ketua-wakil",
         "imageUrl": "/departement/ph.webp",
         "description": "Memimpin dan mengkoordinasikan seluruh kegiatan organisasi, mengawasi jalannya program kerja, serta menjadi representasi HMJBI di internal dan eksternal.",
@@ -18,14 +18,14 @@
         ]
     },
     {
-        "name": "Sekretaris",
+        "name": "Sekretaris Umum",
         "slug": "sekretaris",
         "imageUrl": "/departement/ph.webp",
-        "description": "Bertanggung jawab terhadap administrasi kegiatan HMJBI, pengelolaan dokumen, notulensi rapat, dan surat-menyurat organisasi.",
         "coordinator": {
             "name": "Yello Aurora Maulidie",
             "image": "/people/ph/ph-sekretaris-umum-yello-idcard.webp"
         },
+        "description": "Bertanggung jawab terhadap administrasi kegiatan HMJBI, pengelolaan dokumen, notulensi rapat, dan surat-menyurat organisasi.",
         "members": [
             {
                 "name": "Yello Aurora Maulidie",
@@ -48,11 +48,11 @@
         "name": "Bendahara",
         "slug": "bendahara",
         "imageUrl": "/departement/ph.webp",
-        "description": "Bertanggung jawab terhadap pengelolaan keuangan HMJBI, penyusunan RAPB, dan pelaporan keuangan secara rutin.",
         "coordinator": {
             "name": "Muhammad Mufqi Fajar",
             "image": "/people/ph/ph-bendahara-umum-fajar-idcard.webp"
         },
+        "description": "Bertanggung jawab terhadap pengelolaan keuangan HMJBI, penyusunan RAPB, dan pelaporan keuangan secara rutin.",
         "members": [
             {
                 "name": "Muhammad Mufqi Fajar",
@@ -70,23 +70,11 @@
         "name": "HUMAS",
         "slug": "humas",
         "imageUrl": "/departement/humas.webp",
-        "description": "Menjalin komunikasi dan relasi internal maupun eksternal, serta mewadahi aspirasi mahasiswa Jurusan Bisnis dan Informatika.",
         "coordinator": {
             "name": "Achmad Alfarizy Satriya Gautama",
             "image": "/people/humas/humas-kor-fariz-idcard.webp"
         },
-        "biro": [
-            {
-                "name": "Internal",
-                "tugas": "Menjalin hubungan kerja sama antar-departemen HMJBI dan dengan pihak jurusan, menjadi wadah aspirasi mahasiswa, serta bersinergi dengan Ketua Angkatan dalam menampung dan menyebarluaskan informasi jurusan.",
-                "members": []
-            },
-            {
-                "name": "Eksternal",
-                "tugas": "Menangani kerjasama luar HMJBI pada forum nasional Himpunan Jurusan Bisnis dan Informatika, kerjasama dengan mitra sponsorship, dan kerjasama dengan organisasi mahasiswa internal kampus Poliwangi.",
-                "members": []
-            }
-        ],
+        "description": "Menjalin komunikasi dan relasi internal maupun eksternal, serta mewadahi aspirasi mahasiswa Jurusan Bisnis dan Informatika.",
         "members": [
             {
                 "name": "Achmad Alfarizy Satriya Gautama",
@@ -138,17 +126,29 @@
                 "imageMember": "/people/humas/humas-staf-wildan-idcard.webp",
                 "role": "Staff"
             }
+        ],
+        "biro": [
+            {
+                "name": "Internal",
+                "tugas": "Menjalin hubungan kerja sama antar-departemen HMJBI dan dengan pihak jurusan, menjadi wadah aspirasi mahasiswa, serta bersinergi dengan Ketua Angkatan dalam menampung dan menyebarluaskan informasi jurusan.",
+                "members": []
+            },
+            {
+                "name": "Eksternal",
+                "tugas": "Menangani kerjasama luar HMJBI pada forum nasional Himpunan Jurusan Bisnis dan Informatika, kerjasama dengan mitra sponsorship, dan kerjasama dengan organisasi mahasiswa internal kampus Poliwangi.",
+                "members": []
+            }
         ]
     },
     {
         "name": "RISTEK",
         "slug": "ristek",
         "imageUrl": "/departement/ristek.webp",
-        "description": "Menganalisa permasalahan dan potensi internal HMJBI, serta memberikan solusi teknologi melalui riset dan pengembangan perangkat lunak maupun keras.",
         "coordinator": {
             "name": "Muhamad Abdul Ghofur",
             "image": "/people/ristek/ristek-co-ghofur-idcard.webp"
         },
+        "description": "Menganalisa permasalahan dan potensi internal HMJBI, serta memberikan solusi teknologi melalui riset dan pengembangan perangkat lunak maupun keras.",
         "members": [
             {
                 "name": "Muhamad Abdul Ghofur",
@@ -223,28 +223,11 @@
         "name": "PENGMAS",
         "slug": "pengmas",
         "imageUrl": "/departement/pengmas.webp",
-        "description": "Mengorganisir dan melaksanakan kegiatan pengabdian kepada masyarakat di lingkungan dalam dan luar Poliwangi.",
         "coordinator": {
             "name": "Dino Febiyan",
             "image": "/people/pengmas/pengmas-kor-dino-idcard.webp"
         },
-        "biro": [
-            {
-                "name": "Sosial dan Kemanusiaan",
-                "tugas": "Mengelola dan menyalurkan bantuan sosial kepada mahasiswa jurusan bisnis dan informatika serta masyarakat sekitar kampus yang membutuhkan.",
-                "members": []
-            },
-            {
-                "name": "Pemberdayaan Masyarakat",
-                "tugas": "Memberdayakan masyarakat luar kampus melalui sosialisasi, pelatihan, dan edukasi.",
-                "members": []
-            },
-            {
-                "name": "Kebendaharaan",
-                "tugas": "Meninjau, mengelola, dan mengawasi seluruh aspek keuangan pada program kerja untuk disalurkan kepada biro program yang bersangkutan.",
-                "members": []
-            }
-        ],
+        "description": "Mengorganisir dan melaksanakan kegiatan pengabdian kepada masyarakat di lingkungan dalam dan luar Poliwangi.",
         "members": [
             {
                 "name": "Dino Febiyan",
@@ -301,34 +284,34 @@
                 "imageMember": "/people/pengmas/pengmas-staf-alwin-idcard.webp",
                 "role": "Staff"
             }
+        ],
+        "biro": [
+            {
+                "name": "Sosial dan Kemanusiaan",
+                "tugas": "Mengelola dan menyalurkan bantuan sosial kepada mahasiswa jurusan bisnis dan informatika serta masyarakat sekitar kampus yang membutuhkan.",
+                "members": []
+            },
+            {
+                "name": "Pemberdayaan Masyarakat",
+                "tugas": "Memberdayakan masyarakat luar kampus melalui sosialisasi, pelatihan, dan edukasi.",
+                "members": []
+            },
+            {
+                "name": "Kebendaharaan",
+                "tugas": "Meninjau, mengelola, dan mengawasi seluruh aspek keuangan pada program kerja untuk disalurkan kepada biro program yang bersangkutan.",
+                "members": []
+            }
         ]
     },
     {
         "name": "PSDM",
         "slug": "psdm",
         "imageUrl": "/departement/psdm.webp",
-        "description": "Meningkatkan kualitas SDM mahasiswa melalui kaderisasi, kedisiplinan, serta informasi lomba dan pelatihan.",
         "coordinator": {
             "name": "Dico Maulana Akbar",
             "image": "/people/psdm/psdm-kor-dico-idcard.webp"
         },
-        "biro": [
-            {
-                "name": "Kaderisasi",
-                "tugas": "Melaksanakan kegiatan kaderisasi tingkat jurusan, PKJ, pembinaan mahasiswa baru, dan peningkatan kapasitas kepemimpinan calon pengurus.",
-                "members": []
-            },
-            {
-                "name": "Kepengurusan",
-                "tugas": "Memastikan aturan dan tata tertib sesuai kebutuhan organisasi, mengawasi kepanitiaan, dan menjaga kedisiplinan pengurus HMJBI.",
-                "members": []
-            },
-            {
-                "name": "Relasi dan Pemberdayaan Mahasiswa",
-                "tugas": "Mengoptimalkan potensi mahasiswa melalui pendataan dan informasi perlombaan, menjadi wadah aspirasi, serta mengadakan gathering dan pemberdayaan.",
-                "members": []
-            }
-        ],
+        "description": "Meningkatkan kualitas SDM mahasiswa melalui kaderisasi, kedisiplinan, serta informasi lomba dan pelatihan.",
         "members": [
             {
                 "name": "Dico Maulana Akbar",
@@ -380,29 +363,34 @@
                 "imageMember": "/people/psdm/psdm-staf-imelda-idcard.webp",
                 "role": "Staff"
             }
+        ],
+        "biro": [
+            {
+                "name": "Kaderisasi",
+                "tugas": "Melaksanakan kegiatan kaderisasi tingkat jurusan, PKJ, pembinaan mahasiswa baru, dan peningkatan kapasitas kepemimpinan calon pengurus.",
+                "members": []
+            },
+            {
+                "name": "Kepengurusan",
+                "tugas": "Memastikan aturan dan tata tertib sesuai kebutuhan organisasi, mengawasi kepanitiaan, dan menjaga kedisiplinan pengurus HMJBI.",
+                "members": []
+            },
+            {
+                "name": "Relasi dan Pemberdayaan Mahasiswa",
+                "tugas": "Mengoptimalkan potensi mahasiswa melalui pendataan dan informasi perlombaan, menjadi wadah aspirasi, serta mengadakan gathering dan pemberdayaan.",
+                "members": []
+            }
         ]
     },
     {
         "name": "KWU",
         "slug": "kwu",
         "imageUrl": "/departement/kwu.webp",
-        "description": "Mengelola KOKI (Kantin Operasional Kreatif Informatika) dan mengembangkan jiwa kewirausahaan mahasiswa JBI.",
         "coordinator": {
             "name": "Ressy Novia Arthaniza",
             "image": "/people/kwu/kwu-kor-ressy-idcard.webp"
         },
-        "biro": [
-            {
-                "name": "Pengembangan Usaha",
-                "tugas": "Mengembangkan ide kreatif, inovasi produk, serta strategi pemasaran guna menunjang skill berwirausaha anggota dan pengurus HMJBI.",
-                "members": []
-            },
-            {
-                "name": "Dana Usaha",
-                "tugas": "Melakukan kegiatan wirausaha untuk memenuhi kebutuhan operasional HMJBI POLIWANGI.",
-                "members": []
-            }
-        ],
+        "description": "Mengelola KOKI (Kantin Operasional Kreatif Informatika) dan mengembangkan jiwa kewirausahaan mahasiswa JBI.",
         "members": [
             {
                 "name": "Ressy Novia Arthaniza",
@@ -459,17 +447,29 @@
                 "imageMember": "/people/kwu/kwu-staf-zepri-idcard.webp",
                 "role": "Staff"
             }
+        ],
+        "biro": [
+            {
+                "name": "Pengembangan Usaha",
+                "tugas": "Mengembangkan ide kreatif, inovasi produk, serta strategi pemasaran guna menunjang skill berwirausaha anggota dan pengurus HMJBI.",
+                "members": []
+            },
+            {
+                "name": "Dana Usaha",
+                "tugas": "Melakukan kegiatan wirausaha untuk memenuhi kebutuhan operasional HMJBI POLIWANGI.",
+                "members": []
+            }
         ]
     },
     {
         "name": "MEDKOM",
         "slug": "medkom",
         "imageUrl": "/departement/medkominfo.webp",
-        "description": "Mendukung pengurus harian di bidang multimedia dan menampung minat bakat mahasiswa di bidang desain, konten, dan dokumentasi.",
         "coordinator": {
             "name": "Dida Hanum Pradipta",
             "image": "/people/medkom/medkom-staff-adid-idcard.webp"
         },
+        "description": "Mendukung pengurus harian di bidang multimedia dan menampung minat bakat mahasiswa di bidang desain, konten, dan dokumentasi.",
         "members": [
             {
                 "name": "Dida Hanum Pradipta",

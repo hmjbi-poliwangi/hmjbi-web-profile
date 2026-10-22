@@ -112,6 +112,7 @@ The admin page is available at `/admin/login`.
 - Production requires a Next.js/Node.js server and a writable persistent filesystem. Static-only hosting/export cannot run the API or persist edits.
 - The GitHub Actions workflow uploads the standalone package to cPanel over FTP. Configure a cPanel Node.js application with its app root set to the uploaded folder, Node.js 20+, and startup file `server.js`; restart the application after deployment. Keep the `data` directory persistent. The workflow excludes active JSON files from sync so admin edits are not overwritten by later deployments.
 - Set `ADMIN_SESSION_SECRET` to a strong random secret in the production environment. `HMJBI_DATA_DIR` can point to a persistent directory outside the release folder; if that directory is empty, initial data is copied from `data-seed`.
+- If saving data returns "Origin is not allowed" behind a reverse proxy, set `HMJBI_PUBLIC_ORIGIN` in the cPanel app environment to the exact public URL used to access the site, such as `https://subdomain.example.id`, then restart the app.
 - The hardcoded credentials are demo credentials as requested and are not safe for a public production deployment. Replace the login mechanism before exposing the dashboard publicly.
 
 ---

@@ -5,11 +5,11 @@ import { useRouter } from "next/navigation";
 import JsonEditor from "@/components/admin/JsonEditor";
 import { DataCollection } from "@/types/data";
 
-const collections: { id: DataCollection; label: string; filename: string }[] = [
-    { id: "division", label: "Struktur Divisi", filename: "division.json" },
-    { id: "events", label: "Kegiatan", filename: "events.json" },
-    { id: "divisions-list", label: "Daftar Divisi", filename: "divisions-list.json" },
-    { id: "proker", label: "Program Kerja & Indikator", filename: "proker.json" },
+const collections: { id: DataCollection; label: string }[] = [
+    { id: "division", label: "Struktur Divisi" },
+    { id: "events", label: "Kegiatan" },
+    { id: "divisions-list", label: "Daftar Divisi" },
+    { id: "proker", label: "Program Kerja & Indikator" },
 ];
 
 type AuthState = "checking" | "authorized" | "denied";
@@ -153,7 +153,7 @@ export default function AdminDashboardPage() {
                 throw new Error(details || result.message || "Data gagal disimpan");
             }
             setNotice(
-                `${collections.find((item) => item.id === activeCollection)?.filename} berhasil disimpan.`
+                `${collections.find((item) => item.id === activeCollection)?.label} berhasil disimpan.`
             );
             setErrorCollection(null);
         } catch (requestError) {
@@ -196,7 +196,7 @@ export default function AdminDashboardPage() {
                         </p>
                         <h1 className="mt-1 text-3xl font-bold">Dashboard</h1>
                         <p className="mt-2 text-sm text-zinc-400">
-                            Perubahan akan disimpan langsung ke berkas JSON server.
+                            Kelola informasi dan konten HMJBI.
                         </p>
                     </div>
                     <button
@@ -241,12 +241,6 @@ export default function AdminDashboardPage() {
                                             ?.label
                                     }
                                 </h2>
-                                <p className="mt-1 text-xs text-zinc-500">
-                                    {
-                                        collections.find((item) => item.id === activeCollection)
-                                            ?.filename
-                                    }
-                                </p>
                             </div>
                             <button
                                 type="button"
