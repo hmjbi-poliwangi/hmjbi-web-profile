@@ -9,6 +9,32 @@ export const dynamic = "force-dynamic";
 const collections: DataCollection[] = ["division", "events", "divisions-list", "proker"];
 const MAX_BODY_BYTES = 1_000_000;
 
+function hasAllowedOrigin(request: NextRequest) {
+    const origin = request.headers.get("origin");
+    if (!origin) return true;
+
+    let originUrl: URL;
+    try {
+        originUrl = new URL(origin);
+    } catch {
+        return false;
+    }
+
+    if (originUrl.protocol !== "http:" && originUrl.protocol !== "https:") {
+        return false;
+    }
+
+    const forwardedHost = request.headers.get("x-forwarded-host")?.split(",")[0]?.trim();
+    const requestHosts = [
+        request.nextUrl.host,
+        request.headers.get("host"),
+        forwardedHost,
+    ].filter((host): host is string => Boolean(host));
+
+    // Compare hosts rather than URL origins because TLS may terminate at a reverse proxy.
+    return requestHosts.some((host) => host.toLowerCase() === originUrl.host.toLowerCase());
+}
+
 async function getCollection(params: Promise<{ collection: string }>) {
     const { collection } = await params;
     return collections.find((item) => item === collection) || null;
@@ -47,8 +73,7 @@ export async function PUT(
         return NextResponse.json({ message: "Login admin diperlukan" }, { status: 401 });
     }
 
-    const origin = request.headers.get("origin");
-    if (origin && origin !== request.nextUrl.origin) {
+    if (!hasAllowedOrigin(request)) {
         return NextResponse.json({ message: "Asal permintaan tidak diizinkan" }, { status: 403 });
     }
 
