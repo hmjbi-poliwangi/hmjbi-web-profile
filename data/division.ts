@@ -425,11 +425,6 @@ export const dataDivisions: Division[] = [
                 role: "Staff",
             },
             {
-                name: "M Lutfi Darmawan",
-                imageMember: "https://picsum.photos/seed/lutfi-darmawan/400/400",
-                role: "Staff",
-            },
-            {
                 name: "Sevila Virdasari",
                 imageMember: "/people/kwu/kwu-staf-sevila-idcard.webp",
                 role: "Staff",

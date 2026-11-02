@@ -16,6 +16,7 @@ import {
 } from "date-fns";
 import { id } from "date-fns/locale";
 import Image from "next/image";
+import Link from "next/link";
 import { Event } from "@/types/event";
 
 function CustomDropdown({
@@ -188,6 +189,8 @@ const CalenderSection = ({ dataKegiatan }: { dataKegiatan: Event[] }) => {
                                 src={activeEvent.image}
                                 alt="event"
                                 fill
+                                loading="lazy"
+                                sizes="(max-width: 1024px) 100vw, 50vw"
                                 className="object-cover duration-500 opacity-70 animate-in fade-in"
                             />
                         ) : (
@@ -217,11 +220,11 @@ const CalenderSection = ({ dataKegiatan }: { dataKegiatan: Event[] }) => {
                                 <p className="max-w-md mb-4 md:mb-8 text-xs md:text-sm italic leading-relaxed text-gray-400 line-clamp-3 md:line-clamp-none">
                                     {activeEvent.description}
                                 </p>
-                                <a href={`/activities/detail-proker/${activeEvent.id}`}>
+                                <Link href={`/activities/detail-proker/${activeEvent.id}`}>
                                     <button className="px-6 py-2 md:px-10 md:py-3 text-[10px] md:text-xs font-black tracking-widest text-black uppercase transition-all transform bg-yellow-400 rounded-full hover:bg-yellow-500 hover:scale-105">
                                         DETAIL INFO
                                     </button>
-                                </a>
+                                </Link>
                             </div>
                         ) : (
                             <div className="flex flex-col items-center justify-center h-full opacity-50 py-4">

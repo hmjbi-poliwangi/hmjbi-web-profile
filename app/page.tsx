@@ -6,18 +6,26 @@ import HeroSection from "@/components/sections/HeroSection";
 import AboutPreviewSection from "@/components/sections/AboutPreviewSection";
 import ProkerCard from "@/components/ui/ProkerCard";
 import CalenderSection from "@/components/sections/CalenderSection";
-// import InstagramSection from "@/components/sections/InstagramSection";
-import DivisionCard from "@/components/ui/DivisionCard";
 import { dataProker } from "@/data/proker";
 import { Event } from "@/types/event";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode, Pagination, Navigation, Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
 import { dataDivisions } from "@/data/division";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+import { Skeleton } from "@/components/ui/Skeleton";
+import Reveal from "@/components/ui/Reveal";
+
+const DivisionCarousel = dynamic(() => import("@/components/sections/DivisionCarousel"), {
+    ssr: false,
+    loading: () => (
+        <div className="relative px-6 md:px-14">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {dataDivisions.slice(0, 3).map((d) => (
+                    <Skeleton key={d.name} className="w-full aspect-video" />
+                ))}
+            </div>
+        </div>
+    ),
+});
 
 const monthNames = [
     "Januari",
@@ -125,101 +133,42 @@ export default function Home() {
             {/** Divisions Section */}
             <Section className="bg-(--color-secondary) text-text-white">
                 <Container>
-                    <h2 className="mb-10 text-3xl font-bold text-center text-white md:text-4xl">
-                        Divisi <span className="text-[#FFD700]">HMJBI</span>
-                    </h2>
-                    <div className="relative px-6 md:px-14">
-                        <Swiper
-                            slidesPerView={1.5}
-                            spaceBetween={12}
-                            freeMode={true}
-                            pagination={{ clickable: true }}
-                            navigation={{
-                                prevEl: ".swiper-prev",
-                                nextEl: ".swiper-next",
-                            }}
-                            autoplay={{
-                                delay: 3000,
-                                disableOnInteraction: false,
-                                pauseOnMouseEnter: true,
-                            }}
-                            modules={[FreeMode, Pagination, Navigation, Autoplay]}
-                            breakpoints={{
-                                640: {
-                                    slidesPerView: 2.5,
-                                    spaceBetween: 16,
-                                },
-                                1024: {
-                                    slidesPerView: 3,
-                                    spaceBetween: 28,
-                                },
-                            }}
-                            className="pb-16"
-                        >
-                            {dataDivisions.map((division) => (
-                                <SwiperSlide key={division.name}>
-                                    <Link
-                                        href={`/division/detail-division/${division.slug || division.name}`}
-                                    >
-                                        <DivisionCard variant="group" dataDivision={division} />
-                                    </Link>
-                                </SwiperSlide>
-                            ))}
-                        </Swiper>
-
-                        <button className="swiper-prev absolute -left-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 md:w-14 md:h-14 flex items-center justify-center bg-[#FFD700] text-black rounded-full shadow-2xl hover:bg-yellow-500 hover:scale-110 transition-all">
-                            <svg
-                                className="w-4 h-4 md:w-6 md:h-6"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2.5}
-                                    d="M15 19l-7-7 7-7"
-                                />
-                            </svg>
-                        </button>
-                        <button className="swiper-next absolute -right-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 md:w-14 md:h-14 flex items-center justify-center bg-[#FFD700] text-black rounded-full shadow-2xl hover:bg-yellow-500 hover:scale-110 transition-all">
-                            <svg
-                                className="w-4 h-4 md:w-6 md:h-6"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2.5}
-                                    d="M9 5l7 7-7 7"
-                                />
-                            </svg>
-                        </button>
-                    </div>
+                    <Reveal>
+                        <h2 className="mb-10 text-3xl font-bold text-center text-white md:text-4xl">
+                            Divisi <span className="text-[#FFD700]">HMJBI</span>
+                        </h2>
+                    </Reveal>
+                    <Reveal delay={150}>
+                        <DivisionCarousel />
+                    </Reveal>
                 </Container>
             </Section>
 
             {/* Activities Section */}
             <Section className="bg-(--color-secondary) text-text-white">
                 <Container>
-                    <h2 className="mb-10 text-3xl font-bold text-center text-white md:text-4xl">
-                        Proker <span className="text-[#FFD700]">HMJBI</span>
-                    </h2>
+                    <Reveal>
+                        <h2 className="mb-10 text-3xl font-bold text-center text-white md:text-4xl">
+                            Proker <span className="text-[#FFD700]">HMJBI</span>
+                        </h2>
+                    </Reveal>
                     <div className="grid justify-center grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4 align-items-center">
-                        {dataProker.slice(0, 4).map((proker) => (
-                            <Link key={proker.id} href={`/activities/detail-proker/${proker.id}`}>
-                                <ProkerCard proker={proker} />
-                            </Link>
+                        {dataProker.slice(0, 4).map((proker, i) => (
+                            <Reveal key={proker.id} delay={i * 80}>
+                                <Link href={`/activities/detail-proker/${proker.id}`}>
+                                    <ProkerCard proker={proker} />
+                                </Link>
+                            </Reveal>
                         ))}
                     </div>
                     <div className="mt-5 text-center">
-                        <Link href="/activities">
-                            <button className="px-10 py-3 text-xs font-black tracking-widest text-black uppercase transition-all transform bg-yellow-400 rounded-full hover:bg-yellow-500 hover:scale-105">
-                                Lihat Lainnya
-                            </button>
-                        </Link>
+                        <Reveal delay={200}>
+                            <Link href="/activities">
+                                <button className="px-10 py-3 text-xs font-black tracking-widest text-black uppercase transition-all transform bg-yellow-400 rounded-full hover:bg-yellow-500 hover:scale-105">
+                                    Lihat Lainnya
+                                </button>
+                            </Link>
+                        </Reveal>
                     </div>
                 </Container>
             </Section>
@@ -227,7 +176,9 @@ export default function Home() {
             {/** Calender Section */}
             <Section className="bg-(--color-secondary) text-text-white">
                 <Container>
-                    <CalenderSection dataKegiatan={prokerEvents} />
+                    <Reveal>
+                        <CalenderSection dataKegiatan={prokerEvents} />
+                    </Reveal>
                 </Container>
             </Section>
 

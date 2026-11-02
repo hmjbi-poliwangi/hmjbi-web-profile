@@ -18,6 +18,8 @@ export default function EventCard({ data }: { data: Event }) {
                     src={data.image || "/test-images/images.jpg"}
                     alt={data.title}
                     fill
+                    loading="lazy"
+                    sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-105 active:scale-105"
                 />
 

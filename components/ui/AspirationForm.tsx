@@ -28,7 +28,7 @@ export default function AspirationForm({ onClose }: Props) {
             }, 1000);
             return () => clearInterval(interval);
         }
-    }, []);
+    }, [cooldown]);
 
     useEffect(() => {
         if (status === "success") {

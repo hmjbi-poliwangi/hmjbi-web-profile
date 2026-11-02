@@ -21,7 +21,14 @@ export default function HeaderProker() {
             {/* Ganti src dengan path logo aslimu jika ada */}
             <div className="relative shrink-0 w-32 h-32 md:w-40 md:h-40">
                 <div className="flex items-center justify-center w-full h-full bg-white border-4 border-yellow-400 rounded-full">
-                    <Image src={"/logo-hmjbi.png"} alt="logo hmjbi" width={100} height={100}/>
+                    <Image
+                        src={"/logo-hmjbi.png"}
+                        alt="logo hmjbi"
+                        width={140}
+                        height={140}
+                        sizes="160px"
+                        className="object-contain"
+                    />
                 </div>
             </div>
         </div>

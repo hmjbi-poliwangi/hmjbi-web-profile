@@ -1,6 +1,7 @@
 import { dataDivisions } from "@/data/division"; // Sesuaikan path ini
 import DivisionCard from "@/components/ui/DivisionCard"; // Sesuaikan path ini dengan lokasi komponen DivisionCard kamu
 import Link from "next/link";
+import Reveal from "@/components/ui/Reveal";
 
 export default function StrukturOrganisasiSection() {
     const urutanPengurus = ["Sekretaris", "Ketua & Wakil", "Bendahara"];
@@ -20,9 +21,11 @@ export default function StrukturOrganisasiSection() {
             <div className="max-w-5xl mx-auto space-y-16">
                 {/* SECTION 1: Pengurus Harian */}
                 <div>
-                    <h2 className="mb-12 text-2xl font-bold text-center text-white md:text-3xl">
-                        Pengurus Harian HM<span className="text-yellow-400">JBI</span>
-                    </h2>
+                    <Reveal>
+                        <h2 className="mb-12 text-2xl font-bold text-center text-white md:text-3xl">
+                            Pengurus Harian HM<span className="text-yellow-400">JBI</span>
+                        </h2>
+                    </Reveal>
 
                     {/* Grid 3 Kolom */}
                     <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
@@ -33,12 +36,13 @@ export default function StrukturOrganisasiSection() {
                             };
 
                             return (
-                                <Link
-                                    key={index}
-                                    href={`/division/detail-division/${item.slug || item.name}`}
-                                >
-                                    <DivisionCard variant="group" dataDivision={modifiedItem} />
-                                </Link>
+                                <Reveal key={index} delay={index * 100}>
+                                    <Link
+                                        href={`/division/detail-division/${item.slug || item.name}`}
+                                    >
+                                        <DivisionCard variant="group" dataDivision={modifiedItem} />
+                                    </Link>
+                                </Reveal>
                             );
                         })}
                     </div>
@@ -46,9 +50,11 @@ export default function StrukturOrganisasiSection() {
 
                 {/* SECTION 2: Divisi */}
                 <div>
-                    <h2 className="mb-12 text-2xl font-bold text-center text-white md:text-3xl">
-                        Divisi HM<span className="text-yellow-400">JBI</span>
-                    </h2>
+                    <Reveal>
+                        <h2 className="mb-12 text-2xl font-bold text-center text-white md:text-3xl">
+                            Divisi HM<span className="text-yellow-400">JBI</span>
+                        </h2>
+                    </Reveal>
 
                     {/* Grid 3 Kolom */}
                     <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
@@ -60,12 +66,13 @@ export default function StrukturOrganisasiSection() {
                             };
 
                             return (
-                                <Link
-                                    key={index}
-                                    href={`/division/detail-division/${item.slug || item.name}`}
-                                >
-                                    <DivisionCard variant="group" dataDivision={modifiedItem} />
-                                </Link>
+                                <Reveal key={index} delay={(index % 3) * 100}>
+                                    <Link
+                                        href={`/division/detail-division/${item.slug || item.name}`}
+                                    >
+                                        <DivisionCard variant="group" dataDivision={modifiedItem} />
+                                    </Link>
+                                </Reveal>
                             );
                         })}
                     </div>

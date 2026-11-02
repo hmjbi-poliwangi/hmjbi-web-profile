@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Container from "../layout/Container";
 import Section from "../layout/Section";
+import Reveal from "../ui/Reveal";
 
 export default function HeroSection() {
     return (
@@ -8,32 +9,39 @@ export default function HeroSection() {
             <Container>
                 <div className="z-10 flex flex-col items-center text-center px-4">
                     {/* Teks HMJBI Atas */}
-                    <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-2">
-                        <span className="text-white">HM</span>
-                        <span className="text-[#FFD700]">JBI</span>
-                    </h1>
+                    <Reveal delay={0}>
+                        <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-2">
+                            <span className="text-white">HM</span>
+                            <span className="text-[#FFD700]">JBI</span>
+                        </h1>
+                    </Reveal>
 
                     {/* Logo Utama */}
-                    <div className="w-36 h-36 md:w-48 md:h-48 my-4">
-                        <Image
-                            width={500}
-                            height={436}
-                            src="/logo-hmjbi.png"
-                            alt="Logo HMJBI"
-                            className="w-full h-full object-contain"
-                            priority
-                        />
-                    </div>
+                    <Reveal delay={150} y={40}>
+                        <div className="w-36 h-36 md:w-48 md:h-48 my-4">
+                            <Image
+                                width={500}
+                                height={436}
+                                src="/logo-hmjbi.png"
+                                alt="Logo HMJBI"
+                                priority
+                                sizes="(max-width: 768px) 144px, 192px"
+                                className="w-full h-full object-contain animate-float"
+                            />
+                        </div>
+                    </Reveal>
 
                     {/* Teks Deskripsi Bawah */}
-                    <div className="space-y-1">
-                        <h2 className="text-xl md:text-2xl font-semibold tracking-wide">
-                            Himpunan Mahasiswa
-                        </h2>
-                        <h3 className="text-lg md:text-xl font-bold text-[#FFD700] uppercase tracking-[0.2em]">
-                            Jurusan Bisnis dan Informatika
-                        </h3>
-                    </div>
+                    <Reveal delay={300}>
+                        <div className="space-y-1">
+                            <h2 className="text-xl md:text-2xl font-semibold tracking-wide">
+                                Himpunan Mahasiswa
+                            </h2>
+                            <h3 className="text-lg md:text-xl font-bold text-[#FFD700] uppercase tracking-[0.2em]">
+                                Jurusan Bisnis dan Informatika
+                            </h3>
+                        </div>
+                    </Reveal>
                 </div>
 
                 {/* Dekorasi opsional: Vignette effect untuk kesan kedalaman */}

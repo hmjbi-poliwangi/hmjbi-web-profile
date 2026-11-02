@@ -10,7 +10,10 @@ function getStatusProker(proker: ProkerItem): { label: string; color: string } {
     if (proker.status) {
         const statusMap: Record<string, { label: string; color: string }> = {
             COMING_SOON: { label: "COMING SOON", color: "bg-blue-600 text-white border-blue-500" },
-            "IN PROGRESS": { label: "IN PROGRESS", color: "bg-yellow-400 text-black border-yellow-300" },
+            "IN PROGRESS": {
+                label: "IN PROGRESS",
+                color: "bg-yellow-400 text-black border-yellow-300",
+            },
             FINISHED: { label: "FINISHED", color: "bg-green-600 text-white border-green-500" },
             CANCELLED: { label: "CANCELLED", color: "bg-red-600 text-white border-red-500" },
         };
@@ -111,6 +114,7 @@ export default function ProkerCard({ proker }: Props) {
                         src={proker.image}
                         alt={proker.name}
                         fill
+                        loading="lazy"
                         className="object-cover opacity-60 group-hover:opacity-80 active:opacity-80 transition-opacity duration-300"
                         sizes="(max-width: 768px) 100vw, 33vw"
                     />

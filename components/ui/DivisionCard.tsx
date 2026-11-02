@@ -15,18 +15,22 @@ export default function DivisionCard({
     const aspectClass =
         variant === "person" ? "aspect-[3/4]" : variant === "group" ? "aspect-video" : "aspect-4/3";
     const fitClass = variant === "person" ? "object-cover" : "object-contain p-4";
+    const hoverAnim = featured
+        ? "animate-float"
+        : variant === "person"
+          ? "hover:-translate-y-2 active:-translate-y-2 transition-transform duration-500"
+          : "transition-all duration-500 hover:-translate-y-2 hover:scale-[1.03] active:-translate-y-2 active:scale-[1.03]";
     return (
-        <div
-            className={`flex flex-col items-center group ${featured ? "animate-float" : !featured && variant === "person" ? "hover:-translate-y-2 active:-translate-y-2 transition-transform duration-500" : ""}`}
-        >
+        <div className={`flex flex-col items-center group ${hoverAnim}`}>
             <div
                 className={`w-full ${aspectClass} bg-zinc-300 rounded-2xl overflow-hidden relative
                   ${
                       featured
                           ? "border-2 border-[#FFD700] glow-pulse group-hover:shadow-[0_0_50px_rgba(255,215,0,0.6)] group-hover:border-[#FFD700] active:shadow-[0_0_50px_rgba(255,215,0,0.6)] active:border-[#FFD700]"
-                          : "border border-[#FFD700]/20 group-hover:shadow-[0_0_25px_rgba(255,215,0,0.25)] group-hover:border-[#FFD700]/70 active:shadow-[0_0_25px_rgba(255,215,0,0.25)] active:border-[#FFD700]/70"
+                          : "border border-[#FFD700]/20 group-hover:shadow-[0_0_35px_rgba(255,215,0,0.35)] group-hover:border-[#FFD700]/70 hover:border-[#FFD700]/70 active:shadow-[0_0_35px_rgba(255,215,0,0.35)] active:border-[#FFD700]/70"
                   }
-                  transition-shadow duration-500`}
+                  group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.55)]
+                  transition-all duration-500`}
             >
                 {dataDivision.imageUrl ? (
                     <Image
@@ -35,6 +39,7 @@ export default function DivisionCard({
                         src={dataDivision.imageUrl}
                         alt={dataDivision.name}
                         loading="lazy"
+                        sizes="(max-width: 768px) 50vw, 33vw"
                         className={`w-full h-full ${fitClass} transition-transform duration-700 group-hover:scale-105 active:scale-105`}
                     />
                 ) : (
