@@ -26,12 +26,13 @@ jobs:
 
       - name: 📦 Prepare standalone package
         run: |
-          mkdir -p .next/standalone/.next/static .next/standalone/public
+          mkdir -p .next/standalone/.next/static .next/standalone/public/_next/static
           cp -R .next/static/. .next/standalone/.next/static/
+          cp -R .next/static/. .next/standalone/public/_next/static/
           cp -R public/. .next/standalone/public/
           test -s .next/standalone/server.js
           test -n "$(find .next/standalone/.next/static -type f -print -quit)"
-          echo "Prepared $(find .next/standalone/.next/static -type f | wc -l) Next.js static assets"
+          echo "Prepared Next.js static assets"
 
       - name: 📁 Ensure directory structure
         run: |
