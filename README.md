@@ -22,14 +22,14 @@ This project is built to be modern, responsive, and easy to maintain by future H
 
 ## ✨ Features
 
-* Organization landing page
-* Profile & vision mission section
-* Management structure display
-* Divisions & work programs
-* Activities & documentation gallery
-* Event information
-* Contact & social media integration
-* Fully responsive design
+- Organization landing page
+- Profile & vision mission section
+- Management structure display
+- Divisions & work programs
+- Activities & documentation gallery
+- Event information
+- Contact & social media integration
+- Fully responsive design
 
 ---
 
@@ -37,23 +37,23 @@ This project is built to be modern, responsive, and easy to maintain by future H
 
 ### Core
 
-* Next.js
-* TypeScript
-* Tailwind CSS
+- Next.js
+- TypeScript
+- Tailwind CSS
 
 ### Tools & Quality
 
-* GitHub
-* Figma
-* ESLint
-* Prettier
-* Husky
-* Commitlint
+- GitHub
+- Figma
+- ESLint
+- Prettier
+- Husky
+- Commitlint
 
 ### Libraries
 
-* Zod (validation)
-* Lucide React (icons)
+- Zod (validation)
+- Lucide React (icons)
 
 ---
 
@@ -102,6 +102,12 @@ http://localhost:3000
 
 ---
 
+## Deployment
+
+GitHub Actions uploads the standalone package to cPanel over FTP. Configure Node.js 20+ with server.js as the startup file, then restart the application after deployment.
+
+---
+
 ## 📂 Project Structure
 
 ```bash
@@ -118,6 +124,7 @@ types/          → TypeScript types
 ## 📚 Documentation
 
 Detailed documentation is available here:
+
 - 📘 **Project Guideline** → [View Document](docs/PROJECT_GUIDELINE.md)
 - 🤝 **Contributing Guide** → [View Document](docs/CONTRIBUTING.md)
 
@@ -141,8 +148,8 @@ fix/*     → bug fixes
 ```bash
 feat: add new feature
 fix: fix bug issue
-docs: update documentation 
-style: improve UI styling  
+docs: update documentation
+style: improve UI styling
 chore: add or update dependencies
 ```
 
@@ -160,10 +167,10 @@ Please read the contributing guide before submitting changes:
 
 ## 🎯 Project Goals
 
-* Clean and modern UI
-* Fully responsive layout
-* Maintainable code structure
-* Easy for future teams to continue development
+- Clean and modern UI
+- Fully responsive layout
+- Maintainable code structure
+- Easy for future teams to continue development
 
 ---
 

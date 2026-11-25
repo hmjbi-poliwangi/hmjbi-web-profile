@@ -1,4 +1,4 @@
-import { ProkerItem } from "@/data/proker";
+import { ProkerItem } from "@/types/proker";
 import Image from "next/image";
 import { MapPin, Users } from "lucide-react";
 

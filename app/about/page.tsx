@@ -149,7 +149,7 @@ export default function HMJBIPage() {
                 </p>
             </section>
 
-            {/* Logo dan Aspirasi Section */}
+            {/* Makna Logo Section */}
             <section className="max-w-4xl px-6 py-16 mx-auto">
                 <Reveal>
                     <h2 className="mb-8 text-2xl font-bold text-white">

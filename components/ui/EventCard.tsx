@@ -3,7 +3,8 @@ import { Event } from "@/types/event"; // Pastikan path ini sesuai dengan file t
 
 export default function EventCard({ data }: { data: Event }) {
     // Fungsi untuk memformat tanggal ke format DD-MM-YYYY
-    const formatTanggal = (date: Date) => {
+    const formatTanggal = (value: Date | string) => {
+        const date = new Date(value);
         const d = date.getDate().toString().padStart(2, "0");
         const m = (date.getMonth() + 1).toString().padStart(2, "0");
         const y = date.getFullYear();

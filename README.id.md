@@ -102,6 +102,12 @@ http://localhost:3000
 
 ---
 
+## Deployment
+
+GitHub Actions mengunggah paket standalone ke cPanel melalui FTP. Gunakan Node.js 20+ dan server.js sebagai startup file, lalu restart aplikasi setelah deployment.
+
+---
+
 ## 📂 Struktur Project
 
 ```
